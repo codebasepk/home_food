@@ -48,7 +48,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:background="@drawable/edit_text_background"
-                            android:hint="Dish name"
+                            android:hint="Dish quantity"
                             android:inputType="number"
                             android:maxLength="2"
                             android:paddingLeft="10sp"
@@ -77,7 +77,6 @@
                             android:background="@drawable/edit_text_background"
                             android:hint="Dish price"
                             android:inputType="number"
-                            android:maxLength="2"
                             android:paddingLeft="10sp"
                             android:paddingTop="@dimen/floating_hint_margin"
                             android:textColor="#fff"
@@ -85,6 +84,23 @@
                     </android.support.design.widget.TextInputLayout>
                 </RelativeLayout>
             </LinearLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/dish_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/edit_text_background"
+                    android:hint="Dish name"
+                    android:paddingLeft="10sp"
+                    android:textColorHint="#000"
+                    android:textColor="#000"
+                    android:paddingTop="@dimen/floating_hint_margin"
+                    android:textSize="15dp" />
+            </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
