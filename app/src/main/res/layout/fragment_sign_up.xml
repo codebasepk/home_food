@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/home_background">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true">
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="vertical">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/app_logo"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@mipmap/ic_launcher"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center_horizontal"
+                    app:civ_border_width="2dp"
+                    app:civ_border_color="#000" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/restaurant_name_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/edit_text_background"
+                        android:hint="Kitchen name"
+                        android:inputType="text"
+                        android:paddingLeft="10sp"
+                        android:paddingTop="@dimen/floating_hint_margin"
+                        android:textColorHint="#000"
+                        android:textColor="#000"
+                        android:textSize="15sp" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/email_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/edit_text_background"
+                        android:hint="Email"
+                        android:inputType="textEmailAddress"
+                        android:paddingLeft="10sp"
+                        android:paddingTop="@dimen/floating_hint_margin"
+                        android:textColorHint="#000"
+                        android:textColor="#000"
+                        android:textSize="15sp" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/opening_time_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/edit_text_background"
+                        android:hint="Mobile number"
+                        android:paddingLeft="10sp"
+                        android:clickable="true"
+                        android:focusable="false"
+                        android:paddingTop="@dimen/floating_hint_margin"
+                        android:textColorHint="#000"
+                        android:textColor="#000"
+                        android:textSize="15sp" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/password_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/edit_text_background"
+                        android:hint="Password"
+                        android:inputType="textPassword"
+                        android:paddingLeft="10sp"
+                        android:textColorHint="#000"
+                        android:textColor="#000"
+                        android:paddingTop="@dimen/floating_hint_margin"
+                        android:textSize="15sp" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/verify_password_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/edit_text_background"
+                        android:hint="Verify password"
+                        android:inputType="textPassword"
+                        android:textColorHint="#000"
+                        android:textColor="#000"
+                        android:paddingLeft="10sp"
+                        android:paddingTop="@dimen/floating_hint_margin"
+                        android:textSize="15sp" />
+                </android.support.design.widget.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/pick_for_current_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:drawableLeft="@mipmap/location_icon"
+                    android:drawablePadding="5dp"
+                    android:gravity="center"
+                    android:textColorHint="#000"
+                    android:textColor="#000"
+                    android:text="Pick for current location"/>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/address_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/edit_text_background"
+                        android:hint="Current location address"
+                        android:inputType="text"
+                        android:paddingLeft="10sp"
+                        android:enabled="false"
+                        android:paddingTop="@dimen/floating_hint_margin"
+                        android:textColorHint="#000"
+                        android:textColor="#000"
+                        android:textSize="15sp" />
+                </android.support.design.widget.TextInputLayout>
+
+
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/sign_up_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/login_button_background"
+                    android:text="CREATE ACCOUNT"
+                    android:layout_marginBottom="10dp"
+                    android:textColor="#000" />
+            </LinearLayout>
+        </ScrollView>
+</RelativeLayout>
