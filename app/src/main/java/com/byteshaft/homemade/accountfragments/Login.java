@@ -32,6 +32,7 @@ public class Login extends Fragment implements View.OnClickListener, HttpRequest
     private EditText mPassword;
     private Button mLoginButton;
     private TextView mForgotPasswordTextView;
+    private TextView mSignUpTextView;
     private String mPasswordString;
     private String mEmailString;
     private HttpRequest request;
@@ -46,9 +47,11 @@ public class Login extends Fragment implements View.OnClickListener, HttpRequest
         mPassword = (EditText) mBaseView.findViewById(R.id.password_edit_text);
         mLoginButton = (Button) mBaseView.findViewById(R.id.button_login);
         mForgotPasswordTextView = (TextView) mBaseView.findViewById(R.id.forgot_password_text_view);
+        mSignUpTextView = (TextView) mBaseView.findViewById(R.id.sign_up_text_view);
 
         mLoginButton.setOnClickListener(this);
         mForgotPasswordTextView.setOnClickListener(this);
+        mSignUpTextView.setOnClickListener(this);
         return mBaseView;
     }
 
@@ -100,12 +103,16 @@ public class Login extends Fragment implements View.OnClickListener, HttpRequest
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button_login:
-                if (validate()) {
-                    loginUser(mEmailString, mPasswordString);
-                }
+                startActivity(new Intent(getActivity(), MainActivity.class));
+//                if (validate()) {
+//                    loginUser(mEmailString, mPasswordString);
+//                }
                 break;
             case R.id.forgot_password_text_view:
                 AccountManagerActivity.getInstance().loadFragment(new ForgotPassword());
+                break;
+            case R.id.sign_up_text_view:
+                AccountManagerActivity.getInstance().loadFragment(new SignUp());
                 break;
 
         }

@@ -2,6 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.byteshaft.homemade">
 
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
     <application
         android:name=".utils.AppGlobals"
         android:allowBackup="true"
@@ -13,19 +20,25 @@
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+        <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".SplashScreen"/>
-
+    </activity>
         <activity android:name=".accountfragments.AccountManagerActivity"/>
-        <activity android:name=".SelectUser"/>
+
+        <activity android:name=".SelectUser">
+
+        </activity>
         <activity android:name=".AddDishDetails"/>
-        <activity android:name=".userActivities.KitchenDetails"/>
-        <activity android:name=".userActivities.KitchensList"/>
+        <activity android:name=".userActivities.KitchenDishesDetailsActivity"/>
+        <activity android:name=".userActivities.KitchensListActivity">
+
+        </activity>
 
     </application>
 

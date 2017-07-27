@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#d3d3d3"
+    android:background="#F79c46"
     tools:context=".SplashScreen">
 
     <RelativeLayout
@@ -14,16 +14,35 @@
 
         <ImageView
             android:id="@+id/logo"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
             android:layout_centerHorizontal="true"
             android:src="@mipmap/ic_launcher"/>
 
         <TextView
+            android:id="@+id/home"
             android:layout_below="@+id/logo"
-            android:text="HomeMade Foods"
-            android:textSize="18sp"
-            android:textColor="@color/colorPrimaryDark"
+            android:text="HOME"
+            android:textSize="40sp"
+            android:textColor="#000"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/made"
+            android:layout_below="@+id/home"
+            android:text="MADE"
+            android:textSize="40sp"
+            android:textColor="#000"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/food"
+            android:layout_below="@+id/made"
+            android:text="FOOD"
+            android:textSize="40sp"
+            android:textColor="#000"
             android:layout_centerHorizontal="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

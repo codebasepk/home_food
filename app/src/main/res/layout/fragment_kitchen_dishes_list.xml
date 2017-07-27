@@ -4,10 +4,10 @@
     android:layout_height="match_parent">
 
     <ListView
-        android:id="@+id/kitchen_details_list_view"
+        android:id="@+id/dish_list_view"
+        android:scrollbars="none"
         android:divider="@null"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbars="none">
+        android:layout_height="match_parent">
     </ListView>
 </LinearLayout>

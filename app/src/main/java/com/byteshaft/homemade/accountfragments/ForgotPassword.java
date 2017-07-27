@@ -32,6 +32,7 @@ public class ForgotPassword extends Fragment implements View.OnClickListener, Ht
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mBaseView = inflater.inflate(R.layout.fragment_forgot_password, container, false);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
         ((AppCompatActivity) getActivity()).getSupportActionBar()
                 .setTitle(getResources().getString(R.string.forgot_password));
         setHasOptionsMenu(true);
