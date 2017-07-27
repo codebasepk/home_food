@@ -3,6 +3,7 @@ package com.byteshaft.homemade.accountfragments;
 import android.Manifest;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -24,6 +25,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.byteshaft.homemade.MainActivity;
 import com.byteshaft.homemade.R;
 import com.byteshaft.homemade.utils.AppGlobals;
 import com.byteshaft.homemade.utils.Helpers;
@@ -82,7 +84,6 @@ public class SignUp extends Fragment implements View.OnClickListener, GoogleApiC
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        super.onCreateView(inflater, container, savedInstanceState);
         mBaseView = inflater.inflate(R.layout.fragment_sign_up, container, false);
         ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
         ((AppCompatActivity) getActivity()).getSupportActionBar()
@@ -95,15 +96,15 @@ public class SignUp extends Fragment implements View.OnClickListener, GoogleApiC
 //        mAddress = (EditText) mBaseView.findViewById(R.id.address_edit_text);
 //        mOpeningTime = (EditText) mBaseView.findViewById(R.id.opening_time_edit_text);
 //        mClosingTime = (EditText) mBaseView.findViewById(R.id.closing_time_edit_text);
-//        mSignUpButton = (Button) mBaseView.findViewById(R.id.sign_up_button);
+        mSignUpButton = (Button) mBaseView.findViewById(R.id.sign_up_button);
 //        mLoginTextView = (TextView) mBaseView.findViewById(R.id.login_text_view);
 //        mPickForCurrentLocation = (TextView) mBaseView.findViewById(R.id.pick_for_current_location);
 
         mSignUpButton.setOnClickListener(this);
-        mLoginTextView.setOnClickListener(this);
-        mOpeningTime.setOnClickListener(this);
-        mClosingTime.setOnClickListener(this);
-        mPickForCurrentLocation.setOnClickListener(this);
+//        mLoginTextView.setOnClickListener(this);
+//        mOpeningTime.setOnClickListener(this);
+//        mClosingTime.setOnClickListener(this);
+//        mPickForCurrentLocation.setOnClickListener(this);
         return mBaseView;
     }
 
@@ -118,14 +119,14 @@ public class SignUp extends Fragment implements View.OnClickListener, GoogleApiC
 
     @Override
     public void onClick(View view) {
-//        switch (view.getId()) {
-//            case R.id.sign_up_button:
-//                System.out.println(validateEditText());
+        switch (view.getId()) {
+            case R.id.sign_up_button:
+                startActivity(new Intent(getActivity(), MainActivity.class));
 //                if (validateEditText()) {
 //                    registerUser(mPasswordString, mEmailAddressString, mAccountType, mAddressString,
 //                            mClosingTimeString, mRestaurantNameString, mOpeningTimeString, mLocationString);
 //                }
-//                break;
+                break;
 //            case R.id.login_text_view:
 //                AccountManagerActivity.getInstance().loadFragment(new Login());
 //                break;
@@ -161,29 +162,29 @@ public class SignUp extends Fragment implements View.OnClickListener, GoogleApiC
 //                    }
 //                }
 //                break;
-//        }
-
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode) {
-            case LOCATION_PERMISSION:
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    if (Helpers.locationEnabled()) {
-                        new LocationTask().execute();
-                    } else {
-                        Helpers.dialogForLocationEnableManually(getActivity());
-                    }
-                } else {
-                    Helpers.showSnackBar(getView(), R.string.permission_denied);
-                }
-
-                break;
         }
+
     }
+
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//        switch (requestCode) {
+//            case LOCATION_PERMISSION:
+//                if (grantResults.length > 0
+//                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                    if (Helpers.locationEnabled()) {
+//                        new LocationTask().execute();
+//                    } else {
+//                        Helpers.dialogForLocationEnableManually(getActivity());
+//                    }
+//                } else {
+//                    Helpers.showSnackBar(getView(), R.string.permission_denied);
+//                }
+//
+//                break;
+//        }
+//    }
 
     public LatLng getLocationFromAddress(Context context, String strAddress) {
 

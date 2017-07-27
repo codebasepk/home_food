@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="5dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:layout_margin="5dp"
@@ -13,55 +10,53 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-        <android.support.v7.widget.CardView
-            android:layout_margin="1dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="5dp">
+    <android.support.v7.widget.CardView
+        app:cardCornerRadius="5dp"
+        android:layout_margin="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/kitchen_image"
-                android:layout_marginTop="5dp"
+                android:id="@+id/dish_image"
+                android:layout_marginTop="15dp"
                 android:layout_marginLeft="5dp"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:src="@mipmap/ic_launcher"
-                android:layout_centerVertical="true"
-                app:civ_border_width="2dp"
+                app:civ_border_width="1dp"
                 app:civ_border_color="#F57C00" />
             <View
                 android:id="@+id/dish_view"
-                android:layout_toRightOf="@+id/kitchen_image"
+                android:layout_toRightOf="@+id/dish_image"
                 android:background="#000"
                 android:layout_width="1dp"
                 android:layout_margin="15dp"
-                android:layout_height="90dp"/>
+                android:layout_height="80dp"/>
 
             <RelativeLayout
-                android:id="@+id/layout_kitchen_name"
+                android:id="@+id/layout_dish_name"
                 android:layout_toRightOf="@+id/dish_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/kitchen_name_title"
+                    android:id="@+id/dish_name_title"
                     android:textSize="15sp"
-                    android:text="Kitchen Name : "
+                    android:text="Dish Name : "
                     android:layout_marginTop="15dp"
                     android:textColor="#000"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <TextView
-                    android:id="@+id/kitchen_name"
-                    android:layout_marginTop="17dp"
+                    android:id="@+id/dish_name"
+                    android:layout_marginTop="18dp"
                     android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/kitchen_name_title"
+                    android:layout_toRightOf="@+id/dish_name_title"
                     android:text="Name"
                     android:textColor="#000"
                     android:layout_width="match_parent"
@@ -71,31 +66,30 @@
             <RelativeLayout
                 android:id="@+id/layout_dish_quantity"
                 android:layout_marginTop="5dp"
-                android:layout_below="@+id/layout_kitchen_name"
+                android:layout_below="@+id/layout_dish_name"
                 android:layout_toRightOf="@+id/dish_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/all_dishes"
+                    android:id="@+id/dish_quantity"
                     android:textSize="15sp"
-                    android:text="Total Dishes :"
+                    android:text="Dish Quantity : "
                     android:textColor="#000"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <TextView
-                    android:id="@+id/all_dishes_number"
-                    android:layout_marginTop="2dp"
-                    android:layout_toRightOf="@+id/all_dishes"
-                    android:text=" 10"
+                    android:id="@+id/dish_for_person"
+                    android:layout_toRightOf="@+id/dish_quantity"
+                    android:text="one"
                     android:textColor="#000"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/layout_location"
+                android:id="@+id/layout_dish_price"
                 android:layout_marginTop="5dp"
                 android:layout_below="@+id/layout_dish_quantity"
                 android:layout_toRightOf="@+id/dish_view"
@@ -103,48 +97,44 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/location_title"
+                    android:id="@+id/dish_price_title"
                     android:textSize="15sp"
-                    android:text="Location :"
+                    android:text="Dish Price : "
                     android:textColor="#000"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <TextView
-                    android:id="@+id/address"
-                    android:layout_toRightOf="@+id/location_title"
-                    android:text=" Khan center cantt"
-                    android:layout_marginTop="2dp"
+                    android:id="@+id/dish_price"
+                    android:layout_toRightOf="@+id/dish_price_title"
+                    android:text="$50"
                     android:textColor="#000"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </RelativeLayout>
 
-            <RelativeLayout
-                android:id="@+id/layout_contact"
-                android:layout_marginTop="5dp"
-                android:layout_below="@+id/layout_location"
-                android:layout_toRightOf="@+id/dish_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
                 <TextView
-                    android:id="@+id/contact_title"
+                    android:layout_marginTop="15dp"
+                    android:layout_below="@+id/dish_image"
+                    android:id="@+id/dish_description_title"
                     android:textSize="15sp"
-                    android:text="Contact # :"
+                    android:layout_marginLeft="5dp"
+                    android:text="Dish Descriptions"
+                    android:layout_marginBottom="2dp"
                     android:textColor="#000"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <TextView
-                    android:id="@+id/contact_number"
-                    android:layout_toRightOf="@+id/contact_title"
-                    android:layout_marginTop="2dp"
-                    android:text=" +923120676767"
+                    android:id="@+id/dish_description"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_below="@+id/dish_description_title"
+                    android:text="Typically smoked or boiled, ham hocks generally consist of much skin, tendons and ligaments."
                     android:textColor="#000"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-            </RelativeLayout>
+
         </RelativeLayout>
     </android.support.v7.widget.CardView>
     </RelativeLayout>

@@ -5,12 +5,13 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="add_dish">Add Dish</string>
+    <string name="order_number">Order</string>
 
     <string name="reset_password">Reset Password</string>
     <string name="update_password">Update Password</string>
     <string name="login">Login</string>
     <string name="user_button">USER</string>
-    <string name="food_provider">Food Provider</string>
+    <string name="food_provider">FOOD PROVIDER</string>
     <string name="dish_details">Done</string>
     <string name="update_profile">Update Profile</string>
     <string name="sign_up">Sign Up</string>

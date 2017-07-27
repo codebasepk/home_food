@@ -71,6 +71,16 @@
                 android:background="@drawable/login_button_background"
                 android:text="@string/login"
                 android:textColor="#000" />
+
+            <TextView
+                android:id="@+id/sign_up_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal"
+                android:text="Don't have an account? SignUp"
+                android:textColor="#000"
+                android:textSize="15sp" />
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

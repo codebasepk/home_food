@@ -20,16 +20,25 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.byteshaft.homemade.accountfragments.ChangePassword;
+import com.byteshaft.homemade.accountfragments.KitchenDishesList;
 import com.byteshaft.homemade.accountfragments.Login;
+import com.byteshaft.homemade.accountfragments.SignUp;
 import com.byteshaft.homemade.utils.AppGlobals;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    public static MainActivity sInstance;
+    public static MainActivity getInstance() {
+        return sInstance;
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        sInstance = this;
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         View headerView;
@@ -46,6 +55,7 @@ public class MainActivity extends AppCompatActivity
         TextView email = (TextView) headerView.findViewById(R.id.email);
 //        name.setText(AppGlobals.getStringFromSharedPreferences(AppGlobals.KEY_RESTAURANT_NAME));
 //        email.setText(AppGlobals.getStringFromSharedPreferences(AppGlobals.KEY_EMAIL));
+        loadFragment(new KitchenDishesList());
     }
 
     @Override
@@ -82,12 +92,17 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.update_profile) {
-//            loadFragment(new UpdateProfile());
+        if (id == R.id.add_dish) {
+            startActivity(new Intent(this, AddDishDetails.class));
+
+        } else if (id == R.id.update_profile) {
+            loadFragment(new SignUp());
+
         } else if (id == R.id.change_password) {
             loadFragment(new ChangePassword());
 
         } else if (id == R.id.admin_logout) {
+
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
             alertDialogBuilder.setTitle("Confirmation");
             alertDialogBuilder.setMessage("Do you really want to logout?")

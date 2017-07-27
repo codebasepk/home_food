@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/home_background">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,10 +18,10 @@
             android:orientation="vertical">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/app_logo"
+                android:id="@+id/dish_image"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@mipmap/ic_launcher"
+                android:src="@drawable/camera"
                 android:layout_gravity="center_horizontal"
                 app:civ_border_width="2dp"
                 app:civ_border_color="#000" />
@@ -53,7 +54,7 @@
                             android:maxLength="2"
                             android:paddingLeft="10sp"
                             android:paddingTop="@dimen/floating_hint_margin"
-                            android:textColor="#fff"
+                            android:textColor="#000"
                             android:textSize="15sp" />
                     </android.support.design.widget.TextInputLayout>
 
@@ -79,7 +80,7 @@
                             android:inputType="number"
                             android:paddingLeft="10sp"
                             android:paddingTop="@dimen/floating_hint_margin"
-                            android:textColor="#fff"
+                            android:textColor="#000"
                             android:textSize="15sp" />
                     </android.support.design.widget.TextInputLayout>
                 </RelativeLayout>
