@@ -107,16 +107,16 @@ public class SignUp extends Fragment implements View.OnClickListener, GoogleApiC
 //        mVerifyPassword = (EditText) mBaseView.findViewById(R.id.verify_password_edit_text);
 //        mRestaurantName = (EditText) mBaseView.findViewById(R.id.restaurant_name_edit_text);
 //        mAddress = (EditText) mBaseView.findViewById(R.id.address_edit_text);
-//        mOpeningTime = (EditText) mBaseView.findViewById(R.id.opening_time_edit_text);
-//        mClosingTime = (EditText) mBaseView.findViewById(R.id.closing_time_edit_text);
+        mOpeningTime = (EditText) mBaseView.findViewById(R.id.opening_time_edit_text);
+        mClosingTime = (EditText) mBaseView.findViewById(R.id.closing_time_edit_text);
         mSignUpButton = (Button) mBaseView.findViewById(R.id.sign_up_button);
 //        mLoginTextView = (TextView) mBaseView.findViewById(R.id.login_text_view);
 //        mPickForCurrentLocation = (TextView) mBaseView.findViewById(R.id.pick_for_current_location);
 
         mSignUpButton.setOnClickListener(this);
 //        mLoginTextView.setOnClickListener(this);
-//        mOpeningTime.setOnClickListener(this);
-//        mClosingTime.setOnClickListener(this);
+        mOpeningTime.setOnClickListener(this);
+        mClosingTime.setOnClickListener(this);
 //        mPickForCurrentLocation.setOnClickListener(this);
         mWeekDaysSpinner.setPrompt("Select working days");
 
@@ -194,7 +194,15 @@ public class SignUp extends Fragment implements View.OnClickListener, GoogleApiC
 //                    }
 //                }
 //                break;
-        }
+            case R.id.opening_time_edit_text:
+                isClosingTime = false;
+                timePickerDialog();
+
+                break;
+            case R.id.closing_time_edit_text:
+                isClosingTime = true;
+                timePickerDialog();
+                break;        }
 
     }
 
@@ -413,7 +421,7 @@ public class SignUp extends Fragment implements View.OnClickListener, GoogleApiC
 
     private void timePickerDialog() {
         Calendar mCurrentTime = Calendar.getInstance();
-        int hour = mCurrentTime.get(Calendar.HOUR_OF_DAY);
+        int hour = mCurrentTime.get(Calendar.HOUR);
         int minute = mCurrentTime.get(Calendar.MINUTE);
         TimePickerDialog mTimePicker;
         mTimePicker = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
@@ -535,5 +543,4 @@ public class SignUp extends Fragment implements View.OnClickListener, GoogleApiC
         return jsonObject.toString();
 
     }
-
 }
