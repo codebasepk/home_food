@@ -6,6 +6,8 @@
 
     <string name="add_dish">Add Dish</string>
     <string name="order_number">Order</string>
+    <string name="user_radius">Radius</string>
+    <string name="refresh_kitchen">Refresh</string>
 
     <string name="reset_password">Reset Password</string>
     <string name="update_password">Update Password</string>

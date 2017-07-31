@@ -19,6 +19,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -27,6 +28,7 @@ import android.widget.Toast;
 
 import com.byteshaft.homemade.MainActivity;
 import com.byteshaft.homemade.R;
+import com.byteshaft.homemade.SelectUser;
 import com.byteshaft.homemade.utils.AppGlobals;
 import com.byteshaft.homemade.utils.Helpers;
 import com.byteshaft.requests.HttpRequest;
@@ -41,9 +43,13 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+
+import io.apptik.widget.multiselectspinner.BaseMultiSelectSpinner;
+import io.apptik.widget.multiselectspinner.MultiSelectSpinner;
 
 public class SignUp extends Fragment implements View.OnClickListener, GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener {
@@ -66,7 +72,11 @@ public class SignUp extends Fragment implements View.OnClickListener, GoogleApiC
     private String mOpeningTimeString;
     private String mClosingTimeString;
     private String mLocationString;
-    private String mAccountType = String.valueOf(2);
+    private ArrayList<String> mWeekDays;
+    private ArrayAdapter<String> arrayAdapter;
+    private MultiSelectSpinner mWeekDaysSpinner;
+
+    private ArrayList<String> titleArrayList;
 
     private Button mSignUpButton;
     private TextView mLoginTextView;
@@ -77,6 +87,7 @@ public class SignUp extends Fragment implements View.OnClickListener, GoogleApiC
 
     private GoogleApiClient mGoogleApiClient;
     private LocationRequest mLocationRequest;
+    private String defaultTextForSpinner;
 
 
     private int locationCounter = 0;
@@ -89,8 +100,10 @@ public class SignUp extends Fragment implements View.OnClickListener, GoogleApiC
         ((AppCompatActivity) getActivity()).getSupportActionBar()
                 .setTitle(getResources().getString(R.string.sign_up));
         setHasOptionsMenu(true);
+        titleArrayList = new ArrayList<>();
         mEmail = (EditText) mBaseView.findViewById(R.id.email_edit_text);
         mPassword = (EditText) mBaseView.findViewById(R.id.password_edit_text);
+        mWeekDaysSpinner = (MultiSelectSpinner) mBaseView.findViewById(R.id.days_spinner);
 //        mVerifyPassword = (EditText) mBaseView.findViewById(R.id.verify_password_edit_text);
 //        mRestaurantName = (EditText) mBaseView.findViewById(R.id.restaurant_name_edit_text);
 //        mAddress = (EditText) mBaseView.findViewById(R.id.address_edit_text);
@@ -105,6 +118,25 @@ public class SignUp extends Fragment implements View.OnClickListener, GoogleApiC
 //        mOpeningTime.setOnClickListener(this);
 //        mClosingTime.setOnClickListener(this);
 //        mPickForCurrentLocation.setOnClickListener(this);
+        mWeekDaysSpinner.setPrompt("Select working days");
+
+        mWeekDays = new ArrayList<>();
+        mWeekDays.add("Monday");
+        mWeekDays.add("Tuesday");
+        mWeekDays.add("Wednesday");
+        mWeekDays.add("Thursday");
+        mWeekDays.add("Friday");
+        mWeekDays.add("Saturday");
+        arrayAdapter = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_list_item_multiple_choice, mWeekDays);
+        mWeekDaysSpinner.setListAdapter(arrayAdapter);
+        mWeekDaysSpinner.setListener(new BaseMultiSelectSpinner.MultiSpinnerListener() {
+            @Override
+            public void onItemsSelected(boolean[] selected) {
+                System.out.println("khan sahab chae lay aao");
+
+            }
+        });
         return mBaseView;
     }
 

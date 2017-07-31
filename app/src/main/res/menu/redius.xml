@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/refresh"
+        android:title="@string/refresh_kitchen"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/radius"
+        android:icon="@mipmap/radius"
+        android:title="@string/user_radius"
+        app:showAsAction="always" />
+
+</menu>

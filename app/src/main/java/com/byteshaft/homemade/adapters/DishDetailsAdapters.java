@@ -41,7 +41,6 @@ public class DishDetailsAdapters extends ArrayAdapter<String> {
             viewHolder = new ViewHolder();
             viewHolder.mDishName = (TextView) convertView.findViewById(R.id.dish_name);
             viewHolder.mDishPrice = (TextView) convertView.findViewById(R.id.dish_price);
-            viewHolder.mDishQuantity = (TextView) convertView.findViewById(R.id.dish_for_person);
             viewHolder.mDishImage = (CircleImageView) convertView.findViewById(R.id.dish_image);
             convertView.setTag(viewHolder);
 
