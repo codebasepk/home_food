@@ -35,7 +35,6 @@ public class KitchenDishesDetailsAdapters extends BaseAdapter {
             viewHolder = new ViewHolder();
             viewHolder.mDishName = (TextView) convertView.findViewById(R.id.dish_name);
             viewHolder.mDishPrice = (TextView) convertView.findViewById(R.id.dish_price);
-            viewHolder.mDishQuantity = (TextView) convertView.findViewById(R.id.dish_for_person);
             viewHolder.mDishImage = (CircleImageView) convertView.findViewById(R.id.dish_image);
             viewHolder.mDishDescriptions = (TextView) convertView.findViewById(R.id.dish_description);
             convertView.setTag(viewHolder);
@@ -44,7 +43,6 @@ public class KitchenDishesDetailsAdapters extends BaseAdapter {
             KitchenDishesDetails kitchenDetails = kitchenDetailsArrayList.get(position);
             viewHolder.mDishName.setText(kitchenDetails.getDishName());
             viewHolder.mDishPrice.setText(kitchenDetails.getDishPrice());
-            viewHolder.mDishQuantity.setText(kitchenDetails.getDishQuantity());
             viewHolder.mDishDescriptions.setText(kitchenDetails.getDishDescriptions());
             viewHolder.mDishImage.setImageBitmap(kitchenDetails.getKitchenImage());
         }

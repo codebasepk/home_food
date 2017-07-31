@@ -18,9 +18,9 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/app_logo"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@mipmap/ic_launcher"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/camera"
                     android:layout_marginTop="10dp"
                     android:layout_gravity="center_horizontal"
                     app:civ_border_width="2dp"
@@ -147,6 +147,157 @@
                         android:textSize="15sp" />
                 </android.support.design.widget.TextInputLayout>
 
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/kitchen_optional_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:textColor="#FFF"
+                    android:gravity="center"
+                    android:background="#F57C00"
+                    android:textSize="15sp"
+                    android:layout_gravity="center_vertical"
+                    android:text="Kitchen Other Details(optional)"/>
+
+                <LinearLayout
+                    android:id="@+id/edit_text_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2.0">
+
+                    <RelativeLayout
+                        android:id="@+id/Phone_one"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.0"
+                        android:padding="5dp">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/table_number_edit_text"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:background="@drawable/edit_text_background"
+                                android:hint="Opening Time"
+                                android:inputType="number"
+                                android:maxLength="2"
+                                android:paddingLeft="10sp"
+                                android:paddingTop="@dimen/floating_hint_margin"
+                                android:textColor="#000"
+                                android:textSize="15sp" />
+                        </android.support.design.widget.TextInputLayout>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/Phone_two"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.0"
+                        android:padding="5dp">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/chairs_edit_text"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:background="@drawable/edit_text_background"
+                                android:hint="Closing Time"
+                                android:inputType="number"
+                                android:paddingLeft="10sp"
+                                android:paddingTop="@dimen/floating_hint_margin"
+                                android:textColor="#000"
+                                android:textSize="15sp" />
+                        </android.support.design.widget.TextInputLayout>
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/main_spinner_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2.0">
+
+                    <RelativeLayout
+                        android:id="@+id/spinner_days"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.0"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:layout_marginTop="5dp"
+                            android:id="@+id/working_days"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textSize="15sp"
+                            android:textColor="#000"
+                            android:layout_gravity="center_vertical"
+                            android:text="Select Working Days :"/>
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/spinner_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.0"
+                        android:padding="5dp">
+
+                        <io.apptik.widget.multiselectspinner.MultiSelectSpinner
+                            android:id="@+id/days_spinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/delivery_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2.0">
+
+                    <RelativeLayout
+                        android:id="@+id/delivery_text_view_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.0"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:layout_marginTop="5dp"
+                            android:id="@+id/delivery_text_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textSize="15sp"
+                            android:textColor="#000"
+                            android:layout_gravity="center_vertical"
+                            android:text="Deliverable :"/>
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/delivery_switch_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.0"
+                        android:padding="5dp">
+
+                        <Switch
+                            android:id="@+id/delivery_switch"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp" />
+                    </RelativeLayout>
+                </LinearLayout>
 
                 <android.support.v7.widget.AppCompatButton
                     android:id="@+id/sign_up_button"
