@@ -67,7 +67,7 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/opening_time_edit_text"
+                        android:id="@+id/mobile_number_edit_text"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:background="@drawable/edit_text_background"
@@ -178,13 +178,12 @@
                             android:layout_height="wrap_content">
 
                             <EditText
-                                android:id="@+id/table_number_edit_text"
+                                android:id="@+id/opening_time_edit_text"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
                                 android:background="@drawable/edit_text_background"
                                 android:hint="Opening Time"
                                 android:inputType="number"
-                                android:maxLength="2"
                                 android:paddingLeft="10sp"
                                 android:paddingTop="@dimen/floating_hint_margin"
                                 android:textColor="#000"
@@ -205,7 +204,7 @@
                             android:layout_height="wrap_content">
 
                             <EditText
-                                android:id="@+id/chairs_edit_text"
+                                android:id="@+id/closing_time_edit_text"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
                                 android:background="@drawable/edit_text_background"
@@ -288,7 +287,7 @@
                         android:id="@+id/delivery_switch_layout"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="1.0"
+                        android:layout_weight="0"
                         android:padding="5dp">
 
                         <Switch
