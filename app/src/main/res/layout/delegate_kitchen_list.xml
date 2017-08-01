@@ -15,6 +15,7 @@
 
 
         <android.support.v7.widget.CardView
+            android:id="@+id/card_view"
             android:layout_margin="1dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -24,22 +25,29 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <RelativeLayout
+                android:id="@+id/image_layout"
+                android:layout_marginTop="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/kitchen_image"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="10dp"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@mipmap/ic_launcher"
                 android:layout_centerVertical="true"
-                app:civ_border_width="2dp"
+                android:src="@mipmap/ic_launcher"
+                app:civ_border_width="1dp"
                 app:civ_border_color="#F57C00" />
+            </RelativeLayout>
+
             <View
                 android:id="@+id/dish_view"
-                android:layout_toRightOf="@+id/kitchen_image"
+                android:layout_toRightOf="@+id/image_layout"
                 android:background="#000"
                 android:layout_width="1dp"
-                android:layout_margin="15dp"
+                android:layout_margin="10dp"
                 android:layout_height="90dp"/>
 
             <RelativeLayout
@@ -50,19 +58,20 @@
 
                 <TextView
                     android:id="@+id/kitchen_name_title"
-                    android:textSize="15sp"
+                    android:textSize="13sp"
                     android:text="Kitchen Name : "
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="10dp"
                     android:textColor="#000"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <TextView
                     android:id="@+id/kitchen_name"
-                    android:layout_marginTop="17dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/kitchen_name_title"
                     android:text="Name"
+                    android:textSize="13sp"
                     android:textColor="#000"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -78,7 +87,7 @@
 
                 <TextView
                     android:id="@+id/all_dishes"
-                    android:textSize="15sp"
+                    android:textSize="13sp"
                     android:text="Total Dishes :"
                     android:textColor="#000"
                     android:layout_width="wrap_content"
@@ -86,7 +95,6 @@
 
                 <TextView
                     android:id="@+id/all_dishes_number"
-                    android:layout_marginTop="2dp"
                     android:layout_toRightOf="@+id/all_dishes"
                     android:text=" 10"
                     android:textColor="#000"
@@ -95,7 +103,7 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/layout_location"
+                android:id="@+id/layout_delivery"
                 android:layout_marginTop="5dp"
                 android:layout_below="@+id/layout_dish_quantity"
                 android:layout_toRightOf="@+id/dish_view"
@@ -103,8 +111,33 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:id="@+id/delivery_status_title"
+                    android:textSize="13sp"
+                    android:text="Deliverable :"
+                    android:textColor="#000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/delivery_status"
+                    android:layout_toRightOf="@+id/delivery_status_title"
+                    android:text=" Yes"
+                    android:textColor="#000"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_location"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/layout_delivery"
+                android:layout_toRightOf="@+id/dish_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
                     android:id="@+id/location_title"
-                    android:textSize="15sp"
+                    android:textSize="13sp"
                     android:text="Location :"
                     android:textColor="#000"
                     android:layout_width="wrap_content"
@@ -114,33 +147,153 @@
                     android:id="@+id/address"
                     android:layout_toRightOf="@+id/location_title"
                     android:text=" Khan center cantt"
-                    android:layout_marginTop="2dp"
+                    android:textColor="#000"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/kitchen_details_view"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="15dp"
+                android:layout_below="@+id/layout_location"
+                android:background="#dd9906"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+            <LinearLayout
+                android:id="@+id/opening_closing_time_layout"
+                android:layout_below="@+id/kitchen_details_view"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2.0">
+
+            <RelativeLayout
+                android:id="@+id/layout_opening_time"
+                android:layout_weight="1.0"
+                android:layout_marginLeft="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/opening_time_title"
+                    android:textSize="13sp"
+                    android:text="Start Time :"
+                    android:textColor="#000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/opening_time"
+                    android:layout_toRightOf="@+id/opening_time_title"
+                    android:text=" 8:00 am"
                     android:textColor="#000"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/layout_contact"
-                android:layout_marginTop="5dp"
-                android:layout_below="@+id/layout_location"
-                android:layout_toRightOf="@+id/dish_view"
+                android:id="@+id/layout_closing_time"
+                android:layout_weight="1.0"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/contact_title"
-                    android:textSize="15sp"
-                    android:text="Contact # :"
+                    android:id="@+id/closing_time_title"
+                    android:textSize="13sp"
+                    android:text="End Time :"
                     android:textColor="#000"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <TextView
-                    android:id="@+id/contact_number"
-                    android:layout_toRightOf="@+id/contact_title"
-                    android:layout_marginTop="2dp"
-                    android:text=" +923120676767"
+                    android:id="@+id/closing_time"
+                    android:layout_toRightOf="@+id/closing_time_title"
+                    android:text=" 5:00 pm"
+                    android:textColor="#000"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/order_finish_layout"
+                android:layout_below="@+id/opening_closing_time_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2.0">
+
+            <RelativeLayout
+                android:id="@+id/layout_order_time"
+                android:layout_weight="1.0"
+                android:layout_marginLeft="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/order_time_title"
+                    android:textSize="13sp"
+                    android:text="Order Time :"
+                    android:textColor="#000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/order_time"
+                    android:layout_toRightOf="@+id/order_time_title"
+                    android:text=" 2h"
+                    android:textColor="#000"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layout_contact"
+                    android:layout_weight="1.0"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/contact_title"
+                        android:textSize="13sp"
+                        android:text="Call :"
+                        android:textColor="#000"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/contact_number"
+                        android:layout_toRightOf="@+id/contact_title"
+                        android:text=" +923120676767"
+                        android:textColor="#000"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_working_days"
+                android:layout_marginLeft="5dp"
+                android:paddingBottom="5dp"
+                android:layout_below="@+id/order_finish_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/working_days_title"
+                    android:textSize="13sp"
+                    android:text="Working days :"
+                    android:textColor="#000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/working_days"
+                    android:layout_toRightOf="@+id/working_days_title"
+                    android:text="     Mon, Tue, Wed, Thu, Fri, Sat, Sun"
                     android:textColor="#000"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />

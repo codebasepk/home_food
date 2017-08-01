@@ -1,6 +1,7 @@
 package com.byteshaft.homemade.gettersetter;
 
 import android.graphics.Bitmap;
+import android.widget.TextView;
 
 
 /**
@@ -14,6 +15,51 @@ public class KitchenList {
     private String kitchenLocation;
     private String kitchenAllDishes;
     private Bitmap kitchenImage;
+    private String openingTime;
+    private String closingTime;
+    private String orderTime;
+    private String workingDays;
+    private boolean deliverable;
+
+    public String getOpeningTime() {
+        return openingTime;
+    }
+
+    public void setOpeningTime(String openingTime) {
+        this.openingTime = openingTime;
+    }
+
+    public String getClosingTime() {
+        return closingTime;
+    }
+
+    public void setClosingTime(String closingTime) {
+        this.closingTime = closingTime;
+    }
+
+    public String getOrderTime() {
+        return orderTime;
+    }
+
+    public void setOrderTime(String orderTime) {
+        this.orderTime = orderTime;
+    }
+
+    public String getWorkingDays() {
+        return workingDays;
+    }
+
+    public void setWorkingDays(String workingDays) {
+        this.workingDays = workingDays;
+    }
+
+    public boolean isDeliverable() {
+        return deliverable;
+    }
+
+    public void setDeliverable(boolean deliverable) {
+        this.deliverable = deliverable;
+    }
 
     public Bitmap getKitchenImage() {
         return kitchenImage;
