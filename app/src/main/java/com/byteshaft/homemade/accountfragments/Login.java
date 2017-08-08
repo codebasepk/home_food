@@ -19,6 +19,7 @@ import com.byteshaft.homemade.utils.AppGlobals;
 import com.byteshaft.homemade.utils.Helpers;
 import com.byteshaft.requests.HttpRequest;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -99,14 +100,15 @@ public class Login extends Fragment implements View.OnClickListener, HttpRequest
 
     }
 
+
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button_login:
-                startActivity(new Intent(getActivity(), MainActivity.class));
-//                if (validate()) {
-//                    loginUser(mEmailString, mPasswordString);
-//                }
+                if (validate()) {
+                    loginUser(mEmailString, mPasswordString);
+                }
                 break;
             case R.id.forgot_password_text_view:
                 AccountManagerActivity.getInstance().loadFragment(new ForgotPassword());
@@ -143,20 +145,39 @@ public class Login extends Fragment implements View.OnClickListener, HttpRequest
                         try {
                             JSONObject jsonObject = new JSONObject(request.getResponseText());
                             String token = jsonObject.getString(AppGlobals.KEY_TOKEN);
-                            String accountType = jsonObject.getString(AppGlobals.KEY_ACCOUNT_TYPE);
                             String userId = jsonObject.getString(AppGlobals.KEY_USER_ID);
                             String email = jsonObject.getString(AppGlobals.KEY_EMAIL);
+                            String kitchenName = jsonObject.getString(AppGlobals.KEY_KITCHEN_NAME);
+
+                            String contactNumber = jsonObject.getString(AppGlobals.KEY_CONTACT_NUMBER);
+                            String openingTime = jsonObject.getString(AppGlobals.KEY_OPENING_TIME);
+                            String closingTime = jsonObject.getString(AppGlobals.KEY_CLOSING_TIME);
+                            boolean deliveryStatus = jsonObject.getBoolean(AppGlobals.KEY_DELIVERY_STATUS);
+                            String KitchenDetailsId = jsonObject.getString(AppGlobals.KEY_KITCHEN_PROVIDERS_ID);
+                            String location = jsonObject.getString(AppGlobals.KEY_LOCATION);
+                            String KitchenImage = jsonObject.getString(AppGlobals.KEY_KITCHEN_IMAGE);
+                            String timeToFinish = jsonObject.getString(AppGlobals.KEY_TIME_TO_FINISH);
+                            String workingDays = jsonObject.getString(AppGlobals.KEY_WORKING_DAYS);
 
                             //saving values
                             AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_EMAIL, email);
-                            AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_ACCOUNT_TYPE, accountType);
                             AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_USER_ID, userId);
                             AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_TOKEN, token);
+                            AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_KITCHEN_NAME, kitchenName);
+
+                            AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_CONTACT_NUMBER, contactNumber);
+                            AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_OPENING_TIME, openingTime);
+                            AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_CLOSING_TIME, closingTime);
+                            AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_DELIVERY_STATUS, String.valueOf(deliveryStatus));
+                            AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_KITCHEN_PROVIDERS_ID, KitchenDetailsId);
+
+                            AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_LOCATION, location);
+                            AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_KITCHEN_IMAGE,  AppGlobals.SERVER_IP_FOR_IMAGE + KitchenImage);
+                            AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_TIME_TO_FINISH, timeToFinish);
+                            AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_WORKING_DAYS, workingDays);
                             Log.i("token", " " + AppGlobals.getStringFromSharedPreferences(AppGlobals.KEY_TOKEN));
                             AppGlobals.loginState(true);
                             gettingUserData();
-                            FragmentManager fragmentManager = getFragmentManager();
-                            fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                             startActivity(new Intent(getActivity(), MainActivity.class));
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -191,25 +212,34 @@ public class Login extends Fragment implements View.OnClickListener, HttpRequest
                                 System.out.println(request.getResponseText());
                                 try {
                                     JSONObject jsonObject = new JSONObject(request.getResponseText());
-                                    String accountType = jsonObject.getString(AppGlobals.KEY_ACCOUNT_TYPE);
                                     String userId = jsonObject.getString(AppGlobals.KEY_USER_ID);
                                     String email = jsonObject.getString(AppGlobals.KEY_EMAIL);
-
-                                    String location = jsonObject.getString(AppGlobals.KEY_LOCATION);
-                                    String address = jsonObject.getString(AppGlobals.KEY_ADDRESS);
-                                    String restaurantName = jsonObject.getString(AppGlobals.KEY_RESTAURANT_NAME);
+                                    String kitchenName = jsonObject.getString(AppGlobals.KEY_KITCHEN_NAME);
+                                    String contactNumber = jsonObject.getString(AppGlobals.KEY_CONTACT_NUMBER);
                                     String openingTime = jsonObject.getString(AppGlobals.KEY_OPENING_TIME);
                                     String closingTime = jsonObject.getString(AppGlobals.KEY_CLOSING_TIME);
+                                    boolean deliveryStatus = jsonObject.getBoolean(AppGlobals.KEY_DELIVERY_STATUS);
+                                    String KitchenDetailsId = jsonObject.getString(AppGlobals.KEY_KITCHEN_PROVIDERS_ID);
+                                    String location = jsonObject.getString(AppGlobals.KEY_LOCATION);
+                                    String KitchenImage = jsonObject.getString(AppGlobals.KEY_KITCHEN_IMAGE);
+                                    String timeToFinish = jsonObject.getString(AppGlobals.KEY_TIME_TO_FINISH);
+                                    String workingDays = jsonObject.getString(AppGlobals.KEY_WORKING_DAYS);
 
                                     //saving values
-                                    AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_ACCOUNT_TYPE, accountType);
                                     AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_EMAIL, email);
                                     AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_USER_ID, userId);
-                                    AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_LOCATION, location);
-                                    AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_ADDRESS, address);
-                                    AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_RESTAURANT_NAME, restaurantName);
+                                    AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_KITCHEN_NAME, kitchenName);
+
+                                    AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_CONTACT_NUMBER, contactNumber);
                                     AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_OPENING_TIME, openingTime);
                                     AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_CLOSING_TIME, closingTime);
+                                    AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_DELIVERY_STATUS, String.valueOf(deliveryStatus));
+                                    AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_KITCHEN_PROVIDERS_ID, KitchenDetailsId);
+
+                                    AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_LOCATION, location);
+                                    AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_KITCHEN_IMAGE, KitchenImage);
+                                    AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_TIME_TO_FINISH, timeToFinish);
+                                    AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_WORKING_DAYS, workingDays);
                                     Log.i("closingTime", " " + AppGlobals.getStringFromSharedPreferences(AppGlobals.KEY_CLOSING_TIME));
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -231,5 +261,4 @@ public class Login extends Fragment implements View.OnClickListener, HttpRequest
                 AppGlobals.getStringFromSharedPreferences(AppGlobals.KEY_TOKEN));
         request.send();
     }
-
 }

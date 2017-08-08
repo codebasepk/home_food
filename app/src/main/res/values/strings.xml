@@ -8,6 +8,9 @@
     <string name="order_number">Order</string>
     <string name="user_radius">Radius</string>
     <string name="refresh_kitchen">Refresh</string>
+    <string name="dish_update">Dish details updated</string>
+    <string name="dish_added">Dish added</string>
+    <string name="dish_delete">Dish Deleted Successfully</string>
 
     <string name="reset_password">Reset Password</string>
     <string name="update_password">Update Password</string>
@@ -30,6 +33,7 @@
     <string name="permission_dialog_message">In order to get address, Location permission is required. please grant it manually</string>
     <string name="pick_for_current_location">Pick for current location</string>
     <string name="enter_address">please provide your address</string>
+    <string name="enter_phone">please provide your contact number</string>
     <string name="address">Address</string>
     <string name="check_internet">Please check your internet connection</string>
     <string name="login_failed">Login Failed!</string>

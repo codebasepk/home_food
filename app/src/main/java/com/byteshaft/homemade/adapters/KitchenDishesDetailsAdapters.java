@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import com.byteshaft.homemade.R;
 import com.byteshaft.homemade.gettersetter.KitchenDishesDetails;
+import com.byteshaft.homemade.utils.AppGlobals;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -40,12 +42,15 @@ public class KitchenDishesDetailsAdapters extends BaseAdapter {
             convertView.setTag(viewHolder);
 
         } else {
-            KitchenDishesDetails kitchenDetails = kitchenDetailsArrayList.get(position);
-            viewHolder.mDishName.setText(kitchenDetails.getDishName());
-            viewHolder.mDishPrice.setText(kitchenDetails.getDishPrice());
-            viewHolder.mDishDescriptions.setText(kitchenDetails.getDishDescriptions());
-            viewHolder.mDishImage.setImageBitmap(kitchenDetails.getKitchenImage());
+
+            viewHolder = (ViewHolder) convertView.getTag();
+
         }
+        KitchenDishesDetails kitchenDetails = kitchenDetailsArrayList.get(position);
+        viewHolder.mDishName.setText(kitchenDetails.getDishName());
+        viewHolder.mDishPrice.setText(kitchenDetails.getDishPrice());
+        viewHolder.mDishDescriptions.setText(kitchenDetails.getDishDescriptions());
+        Picasso.with(AppGlobals.getContext()).load(kitchenDetails.getDishImage()).into(viewHolder.mDishImage);
 
         return convertView;
     }
@@ -66,10 +71,9 @@ public class KitchenDishesDetailsAdapters extends BaseAdapter {
         return 0;
     }
 
-    private class ViewHolder{
+    private class ViewHolder {
         TextView mDishName;
         TextView mDishDescriptions;
-        TextView mDishQuantity;
         TextView mDishPrice;
         CircleImageView mDishImage;
     }

@@ -10,16 +10,34 @@ import android.widget.TextView;
 
 public class KitchenList {
 
+    private int kitchenId;
     private String kitchenName;
     private String kitchenPhoneNumber;
     private String kitchenLocation;
     private String kitchenAllDishes;
-    private Bitmap kitchenImage;
+    private String kitchenImage;
     private String openingTime;
     private String closingTime;
     private String orderTime;
     private String workingDays;
     private boolean deliverable;
+
+    public int getKitchenId() {
+
+        return kitchenId;
+    }
+
+    public void setKitchenId(int kitchenId) {
+        this.kitchenId = kitchenId;
+    }
+
+    public String getKitchenImage() {
+        return kitchenImage;
+    }
+
+    public void setKitchenImage(String kitchenImage) {
+        this.kitchenImage = kitchenImage;
+    }
 
     public String getOpeningTime() {
         return openingTime;
@@ -61,13 +79,6 @@ public class KitchenList {
         this.deliverable = deliverable;
     }
 
-    public Bitmap getKitchenImage() {
-        return kitchenImage;
-    }
-
-    public void setKitchenImage(Bitmap kitchenImage) {
-        this.kitchenImage = kitchenImage;
-    }
 
     public String getKitchenName() {
         return kitchenName;

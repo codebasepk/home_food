@@ -19,6 +19,7 @@ import com.byteshaft.homemade.utils.AppGlobals;
 import com.byteshaft.homemade.utils.Helpers;
 import com.byteshaft.requests.HttpRequest;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -134,19 +135,38 @@ public class AccountActivationCode extends Fragment implements View.OnClickListe
                     case HttpURLConnection.HTTP_OK:
                         try {
                             JSONObject jsonObject = new JSONObject(request.getResponseText());
-                            System.out.println( "data" + jsonObject);
-                            String accountType = jsonObject.getString(AppGlobals.KEY_ACCOUNT_TYPE);
                             String userId = jsonObject.getString(AppGlobals.KEY_USER_ID);
-                            String email = jsonObject.getString(AppGlobals.KEY_EMAIL);
                             String token = jsonObject.getString(AppGlobals.KEY_TOKEN);
+                            String email = jsonObject.getString(AppGlobals.KEY_EMAIL);
+                            String kitchenName = jsonObject.getString(AppGlobals.KEY_KITCHEN_NAME);
+                            String contactNumber = jsonObject.getString(AppGlobals.KEY_CONTACT_NUMBER);
+                            String openingTime = jsonObject.getString(AppGlobals.KEY_OPENING_TIME);
+                            String closingTime = jsonObject.getString(AppGlobals.KEY_CLOSING_TIME);
+                            boolean deliveryStatus = jsonObject.getBoolean(AppGlobals.KEY_DELIVERY_STATUS);
+                            String KitchenDetailsId = jsonObject.getString(AppGlobals.KEY_KITCHEN_PROVIDERS_ID);
+                            String location = jsonObject.getString(AppGlobals.KEY_LOCATION);
+                            String KitchenImage = jsonObject.getString(AppGlobals.KEY_KITCHEN_IMAGE);
+                            String timeToFinish = jsonObject.getString(AppGlobals.KEY_TIME_TO_FINISH);
+                            String workingDays = jsonObject.getString(AppGlobals.KEY_WORKING_DAYS);
 
                             //saving values
-                            AppGlobals.loginState(true);
-                            AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_USER_ID, userId);
-                            AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_TOKEN, token);
                             AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_EMAIL, email);
-                            AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_ACCOUNT_TYPE, accountType);
+                            AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_USER_ID, userId);
+                            AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_KITCHEN_NAME, kitchenName);
+
+                            AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_CONTACT_NUMBER, contactNumber);
+                            AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_OPENING_TIME, openingTime);
+                            AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_CLOSING_TIME, closingTime);
+                            AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_DELIVERY_STATUS, String.valueOf(deliveryStatus));
+                            AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_KITCHEN_PROVIDERS_ID, KitchenDetailsId);
+
+                            AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_LOCATION, location);
+                            AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_KITCHEN_IMAGE, KitchenImage);
+                            AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_TIME_TO_FINISH, timeToFinish);
+                            AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_WORKING_DAYS, workingDays);
+                            AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_TOKEN, token);
                             Log.i("token", " " + AppGlobals.getStringFromSharedPreferences(AppGlobals.KEY_TOKEN));
+                            AppGlobals.loginState(true);
                             FragmentManager fragmentManager = getFragmentManager();
                             fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                             startActivity(new Intent(getActivity(), MainActivity.class));

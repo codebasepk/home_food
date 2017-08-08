@@ -10,21 +10,35 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 
-import com.byteshaft.homemade.AddDishDetails;
 import com.byteshaft.homemade.R;
 import com.byteshaft.homemade.adapters.KitchenDishesDetailsAdapters;
+import com.byteshaft.homemade.gettersetter.DishDetails;
+import com.byteshaft.homemade.gettersetter.KitchenDishesDetails;
+import com.byteshaft.homemade.utils.AppGlobals;
+import com.byteshaft.homemade.utils.Helpers;
+import com.byteshaft.requests.HttpRequest;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.net.HttpURLConnection;
 import java.util.ArrayList;
 
 /**
  * Created by husnain on 7/24/17.
  */
 
-public class KitchenDishesDetailsActivity extends AppCompatActivity {
+public class KitchenDishesDetailsActivity extends AppCompatActivity implements
+        HttpRequest.OnReadyStateChangeListener, HttpRequest.OnErrorListener {
 
     private ListView mKitchenDishesDetailsListView;
     private KitchenDishesDetailsAdapters kitchenDishesDetailsAdapters;
     private ArrayList<com.byteshaft.homemade.gettersetter.KitchenDishesDetails> kitchenDishesDetailsArrayList;
+    private String mKitchenContact;
+    private int mKitchenId;
+
+    private HttpRequest request;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,41 +47,11 @@ public class KitchenDishesDetailsActivity extends AppCompatActivity {
         mKitchenDishesDetailsListView = (ListView) findViewById(R.id.kitchen_details_list_view);
         kitchenDishesDetailsArrayList = new ArrayList<>();
         kitchenDishesDetailsAdapters = new KitchenDishesDetailsAdapters(KitchenDishesDetailsActivity.this, kitchenDishesDetailsArrayList);
-        com.byteshaft.homemade.gettersetter.KitchenDishesDetails kitchenDishesDetails = new com.byteshaft.homemade.gettersetter.KitchenDishesDetails();
-        kitchenDishesDetails.setDishName("Rice");
-        kitchenDishesDetails.setDishPrice("100");
-        kitchenDishesDetails.setDishQuantity("10");
-        kitchenDishesDetails.setKitchenImage(BitmapFactory.decodeResource(getResources(), R.drawable.change_password));
-        kitchenDishesDetailsArrayList.add(kitchenDishesDetails);
-
-        com.byteshaft.homemade.gettersetter.KitchenDishesDetails kitchenDishesDetails1 = new com.byteshaft.homemade.gettersetter.KitchenDishesDetails();
-        kitchenDishesDetails1.setDishName("BBQ");
-        kitchenDishesDetails1.setDishPrice("200");
-        kitchenDishesDetails1.setDishQuantity("20");
-        kitchenDishesDetails1.setKitchenImage(BitmapFactory.decodeResource(getResources(), R.drawable.change_password));
-        kitchenDishesDetailsArrayList.add(kitchenDishesDetails1);
-
-        com.byteshaft.homemade.gettersetter.KitchenDishesDetails kitchenDishesDetails2 = new com.byteshaft.homemade.gettersetter.KitchenDishesDetails();
-        kitchenDishesDetails2.setDishName("BBQ");
-        kitchenDishesDetails2.setDishPrice("200");
-        kitchenDishesDetails2.setDishQuantity("20");
-        kitchenDishesDetails2.setKitchenImage(BitmapFactory.decodeResource(getResources(), R.drawable.change_password));
-        kitchenDishesDetailsArrayList.add(kitchenDishesDetails2);
-
-        com.byteshaft.homemade.gettersetter.KitchenDishesDetails kitchenDishesDetails3 = new com.byteshaft.homemade.gettersetter.KitchenDishesDetails();
-        kitchenDishesDetails3.setDishName("BBQ");
-        kitchenDishesDetails3.setDishPrice("200");
-        kitchenDishesDetails3.setDishQuantity("20");
-        kitchenDishesDetails3.setKitchenImage(BitmapFactory.decodeResource(getResources(), R.drawable.change_password));
-        kitchenDishesDetailsArrayList.add(kitchenDishesDetails3);
-
-        com.byteshaft.homemade.gettersetter.KitchenDishesDetails kitchenDishesDetails4 = new com.byteshaft.homemade.gettersetter.KitchenDishesDetails();
-        kitchenDishesDetails4.setDishName("BBQ");
-        kitchenDishesDetails4.setDishPrice("200");
-        kitchenDishesDetails4.setDishQuantity("20");
-        kitchenDishesDetails4.setKitchenImage(BitmapFactory.decodeResource(getResources(), R.drawable.change_password));
-        kitchenDishesDetailsArrayList.add(kitchenDishesDetails3);
         mKitchenDishesDetailsListView.setAdapter(kitchenDishesDetailsAdapters);
+
+        mKitchenId = getIntent().getIntExtra("id", 0);
+        mKitchenContact = getIntent().getStringExtra("contact_number");
+        getAllKitchenDishes(mKitchenId);
     }
 
     @Override
@@ -82,11 +66,63 @@ public class KitchenDishesDetailsActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.phone_number:
                 Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:+923120676767"));
+                intent.setData(Uri.parse("tel:" + mKitchenContact));
                 startActivity(intent);
                 break;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void getAllKitchenDishes(int kitchenId) {
+        request = new HttpRequest(this);
+        request.setOnReadyStateChangeListener(this);
+        request.setOnErrorListener(this);
+        request.open("GET", String.format("%sfood-providers/%s/menu/", AppGlobals.BASE_URL, kitchenId));
+        request.setRequestHeader("Authorization", "Token " +
+                AppGlobals.getStringFromSharedPreferences(AppGlobals.KEY_TOKEN));
+        request.send();
+    }
+
+    @Override
+    public void onError(HttpRequest httpRequest, int readyState, short i1, Exception exception) {
+        switch (readyState) {
+            case HttpRequest.ERROR_CONNECTION_TIMED_OUT:
+                Helpers.showSnackBar(findViewById(android.R.id.content), "connection time out");
+                break;
+            case HttpRequest.ERROR_NETWORK_UNREACHABLE:
+                Helpers.showSnackBar(findViewById(android.R.id.content), exception.getLocalizedMessage());
+                break;
+        }
+
+    }
+
+    @Override
+    public void onReadyStateChange(HttpRequest httpRequest, int readyState) {
+        switch (readyState) {
+            case HttpRequest.STATE_DONE:
+                Helpers.dismissProgressDialog();
+                switch (request.getStatus()) {
+                    case HttpURLConnection.HTTP_OK:
+                        System.out.println(request.getResponseText() + "working ");
+                        try {
+                            JSONArray jsonArray = new JSONArray(request.getResponseText());
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                KitchenDishesDetails kitchenDishesDetails = new KitchenDishesDetails();
+                                kitchenDishesDetails.setDishPrice(jsonObject.getString("price"));
+                                kitchenDishesDetails.setDishName(jsonObject.getString("name"));
+                                kitchenDishesDetails.setDishImage(jsonObject.getString("image"));
+                                kitchenDishesDetails.setDishDescriptions(jsonObject.getString("description"));
+                                kitchenDishesDetailsArrayList.add(kitchenDishesDetails);
+                                kitchenDishesDetailsAdapters.notifyDataSetChanged();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                }
+        }
+
     }
 }
