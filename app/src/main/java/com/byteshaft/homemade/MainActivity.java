@@ -3,8 +3,6 @@ package com.byteshaft.homemade;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
@@ -20,10 +18,14 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.byteshaft.homemade.accountfragments.ChangePassword;
-import com.byteshaft.homemade.accountfragments.KitchenDishesList;
+import com.byteshaft.homemade.foodProvidersFragments.KitchenDishesList;
 import com.byteshaft.homemade.accountfragments.Login;
 import com.byteshaft.homemade.accountfragments.SignUp;
+import com.byteshaft.homemade.foodProvidersFragments.AddDishDetails;
 import com.byteshaft.homemade.utils.AppGlobals;
+import com.byteshaft.homemade.utils.Helpers;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -32,6 +34,8 @@ public class MainActivity extends AppCompatActivity
     public static MainActivity getInstance() {
         return sInstance;
     }
+
+    public static MenuItem sMenuItem;
 
 
     @Override
@@ -53,9 +57,16 @@ public class MainActivity extends AppCompatActivity
         headerView = navigationView.getHeaderView(0);
         TextView name = (TextView) headerView.findViewById(R.id.name);
         TextView email = (TextView) headerView.findViewById(R.id.email);
-//        name.setText(AppGlobals.getStringFromSharedPreferences(AppGlobals.KEY_RESTAURANT_NAME));
-//        email.setText(AppGlobals.getStringFromSharedPreferences(AppGlobals.KEY_EMAIL));
+        CircleImageView kitchenImage = (CircleImageView) headerView.findViewById(R.id.nav_imageView);
+        name.setText(AppGlobals.getStringFromSharedPreferences(AppGlobals.KEY_KITCHEN_NAME));
+        email.setText(AppGlobals.getStringFromSharedPreferences(AppGlobals.KEY_EMAIL));
+        if (AppGlobals.isLogin() && AppGlobals.getStringFromSharedPreferences(AppGlobals.KEY_KITCHEN_IMAGE) != null) {
+            String url = AppGlobals.getStringFromSharedPreferences(AppGlobals.KEY_KITCHEN_IMAGE);
+            Helpers.getBitMap(url, kitchenImage);
+        }
         loadFragment(new KitchenDishesList());
+        AddDishDetails addDishDetails = new AddDishDetails();
+        addDishDetails.setTargetFragment(addDishDetails, 0);
     }
 
     @Override
@@ -68,23 +79,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.add_dish:
-                startActivity(new Intent(this, AddDishDetails.class));
-                break;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -93,15 +87,12 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.add_dish) {
-            startActivity(new Intent(this, AddDishDetails.class));
+            loadFragment(new AddDishDetails());
 
         } else if (id == R.id.update_profile) {
             loadFragment(new SignUp());
 
-        } else if (id == R.id.change_password) {
-            loadFragment(new ChangePassword());
-
-        } else if (id == R.id.admin_logout) {
+        }  else if (id == R.id.admin_logout) {
 
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
             alertDialogBuilder.setTitle("Confirmation");

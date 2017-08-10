@@ -7,41 +7,42 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 
-/**
- * Created by husnain on 5/11/17.
- */
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 public class AppGlobals extends Application {
 
-    public static final String SERVER_IP = "http://46.101.15.119:8000/";
+    public static final String SERVER_IP = "http://178.62.67.242:8000/";
+    public static final String SERVER_IP_FOR_IMAGE = " http://46.101.72.82:8000";
     public static final String BASE_URL = String.format("%sapi/", SERVER_IP);
     private static Context sContext;
     public static final String KEY_LOGIN = "login";
-    public static final String KEY_RESTAURANT_NAME = "full_name";
+    public static final String KEY_KITCHEN_NAME = "name";
+    public static final String KEY_DISH_NAME = "name";
     public static final String KEY_USER_ID = "id";
     public static final String KEY_ADDRESS = "address";
     public static final String KEY_LOCATION = "location";
     public static final String KEY_EMAIL = "email";
-    public static final String KEY_ACCOUNT_TYPE = "account_type";
-    public static final String KEY_TABLE_LOCATION = "location";
-    public static final String KEY_TABLE_NUMBER = "table_number";
-    public static final String KEY_TABLE_STATUS = "serviceable";
-    public static final String KEY_TABLE_BOOKINGS = "bookings";
-    public static final String KEY_TABLE_ID = "id";
-    public static final String KEY_RESTAURANT_ID = "restaurant";
-    public static final String KEY_TABLE_BOOKING_TIME = "minimum_booking_time";
-    public static final String KEY_TABLE_CHAIRS = "number_of_chairs";
+    public static final String KEY_CONTACT_NUMBER = "contact_number";
+    public static final String KEY_KITCHEN_IMAGE = "photo";
+    public static final String KEY_KITCHEN_PROVIDERS_ID = "id";
+    public static final String KEY_DELIVERY_STATUS = "delivery";
+    public static final String KEY_TIME_TO_FINISH = "time_to_finish";
+    public static final String KEY_WORKING_DAYS = "working_days";
     public static final String KEY_TOKEN = "token";
     public static final String KEY_OPENING_TIME = "opening_time";
     public static final String KEY_CLOSING_TIME = "closing_time";
+    public static final String KEY_SWITCH_STATE = "switch";
     public static final String USER_ACTIVATION_KEY = "activation_key";
-    public static final String KEY_FCM_TOKEN = "token";
     public static final int LOCATION_ENABLE = 3;
+    public static ImageLoader sImageLoader;
 
 
     @Override
     public void onCreate() {
         super.onCreate();
+        sImageLoader = ImageLoader.getInstance();
+        sImageLoader.init(ImageLoaderConfiguration.createDefault(getApplicationContext()));
         sContext = getApplicationContext();
     }
 
@@ -76,6 +77,16 @@ public class AppGlobals extends Application {
     public static boolean isLogin() {
         SharedPreferences sharedPreferences = getPreferenceManager();
         return sharedPreferences.getBoolean(KEY_LOGIN, false);
+    }
+
+    public static void saveSwitchState(boolean type) {
+        SharedPreferences sharedPreferences = getPreferenceManager();
+        sharedPreferences.edit().putBoolean(KEY_SWITCH_STATE, type).apply();
+    }
+
+    public static boolean getSwitchValue() {
+        SharedPreferences sharedPreferences = getPreferenceManager();
+        return sharedPreferences.getBoolean(KEY_SWITCH_STATE, false);
     }
 
     public static void alertDialog(Activity activity, String title, String msg) {

@@ -123,7 +123,5 @@ public class ForgotPassword extends Fragment implements View.OnClickListener, Ht
             e.printStackTrace();
         }
         return jsonObject.toString();
-
     }
-
 }

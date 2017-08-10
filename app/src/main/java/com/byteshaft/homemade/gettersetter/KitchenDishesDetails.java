@@ -12,19 +12,17 @@ public class KitchenDishesDetails {
 
     private String dishName;
     private String dishDescriptions;
-    private String dishQuantity;
     private String kitchenPhoneNumber;
     private String dishPrice;
-    private Bitmap kitchenImage;
+    private String dishImage;
 
-    public String getDishQuantity() {
-        return dishQuantity;
+    public String getDishImage() {
+        return dishImage;
     }
 
-    public void setDishQuantity(String dishQuantity) {
-        this.dishQuantity = dishQuantity;
+    public void setDishImage(String dishImage) {
+        this.dishImage = dishImage;
     }
-
     public String getDishPrice() {
         return dishPrice;
     }
@@ -33,14 +31,6 @@ public class KitchenDishesDetails {
         this.dishPrice = dishPrice;
     }
 
-
-    public Bitmap getKitchenImage() {
-        return kitchenImage;
-    }
-
-    public void setKitchenImage(Bitmap kitchenImage) {
-        this.kitchenImage = kitchenImage;
-    }
 
 
     public String getDishName() {

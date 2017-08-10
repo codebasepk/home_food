@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.byteshaft.homemade.R;
 import com.byteshaft.homemade.gettersetter.DishDetails;
+import com.byteshaft.homemade.utils.AppGlobals;
+import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
@@ -45,15 +47,19 @@ public class DishDetailsAdapters extends ArrayAdapter<String> {
             convertView.setTag(viewHolder);
 
         } else {
-            DishDetails dishDetails = dishDetailsArrayList.get(position);
-            viewHolder.mDishName.setText(dishDetails.getDishName());
-            viewHolder.mDishPrice.setText(dishDetails.getDishPrice());
-            viewHolder.mDishQuantity.setText(dishDetails.getDishQuantity());
-            viewHolder.mDishImage.setImageBitmap(dishDetails.getDishImage());
-        }
+            viewHolder = (ViewHolder) convertView.getTag();
+          }
+
+        DishDetails dishDetails = dishDetailsArrayList.get(position);
+        viewHolder.mDishName.setText(dishDetails.getDishName());
+        viewHolder.mDishPrice.setText(dishDetails.getDishPrice());
+        Picasso.with(AppGlobals.getContext()).load(dishDetails.getDishImage()).into(viewHolder.mDishImage);
 
         return convertView;
     }
+
+
+
 
 
     @Override
@@ -61,15 +67,11 @@ public class DishDetailsAdapters extends ArrayAdapter<String> {
         return dishDetailsArrayList.size();
     }
 
-    @Override
-    public long getItemId(int position) {
-        return 0;
-    }
 
     private class ViewHolder{
         TextView mDishName;
         TextView mDishPrice;
-        TextView mDishQuantity;
         CircleImageView mDishImage;
     }
+
 }

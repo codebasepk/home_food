@@ -26,23 +26,6 @@
                 app:civ_border_width="2dp"
                 app:civ_border_color="#000" />
 
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <EditText
-                            android:id="@+id/chairs_edit_text"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:background="@drawable/edit_text_background"
-                            android:hint="Dish price"
-                            android:inputType="number"
-                            android:paddingLeft="10sp"
-                            android:paddingTop="@dimen/floating_hint_margin"
-                            android:textColor="#000"
-                            android:textSize="15sp" />
-                    </android.support.design.widget.TextInputLayout>
-
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -59,12 +42,29 @@
                     android:paddingTop="@dimen/floating_hint_margin"
                     android:textSize="15dp" />
             </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/dish_price"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:background="@drawable/edit_text_background"
+                            android:hint="Dish price"
+                            android:inputType="number"
+                            android:paddingLeft="10sp"
+                            android:paddingTop="@dimen/floating_hint_margin"
+                            android:textColor="#000"
+                            android:textSize="15sp" />
+                    </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/email_edit_text"
+                    android:id="@+id/dish_details"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit_text_background"
@@ -81,7 +81,7 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.v7.widget.AppCompatButton
-                android:id="@+id/button_login"
+                android:id="@+id/button_done"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"

@@ -34,7 +34,6 @@
         <activity android:name=".SelectUser">
 
         </activity>
-        <activity android:name=".AddDishDetails"/>
         <activity android:name=".userActivities.KitchenDishesDetailsActivity"/>
         <activity android:name=".userActivities.KitchensListActivity">
 

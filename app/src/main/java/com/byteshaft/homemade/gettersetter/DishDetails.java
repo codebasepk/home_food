@@ -10,18 +10,39 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class DishDetails {
 
+    private int id;
     private String dishName;
-    private String dishQuantity;
     private String dishPrice;
-    private Bitmap dishImage;
+    private String dishImage;
+    private String descriptions;
 
-    public String getDishQuantity() {
-        return dishQuantity;
+    public String getDescriptions() {
+        return descriptions;
     }
 
-    public void setDishQuantity(String dishQuantity) {
-        this.dishQuantity = dishQuantity;
+    public void setDescriptions(String descriptions) {
+        this.descriptions = descriptions;
     }
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
+    public String getDishImage() {
+        return dishImage;
+    }
+
+    public void setDishImage(String dishImage) {
+        this.dishImage = dishImage;
+    }
+
+
 
     public String getDishPrice() {
         return dishPrice;
@@ -32,13 +53,7 @@ public class DishDetails {
     }
 
 
-    public Bitmap getDishImage() {
-        return dishImage;
-    }
 
-    public void setDishImage(Bitmap dishImage) {
-        this.dishImage = dishImage;
-    }
 
     public String getDishName() {
         return dishName;
