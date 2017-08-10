@@ -23,7 +23,6 @@ public class AppGlobals extends Application {
     public static final String KEY_ADDRESS = "address";
     public static final String KEY_LOCATION = "location";
     public static final String KEY_EMAIL = "email";
-    public static final String KEY_ACCOUNT_TYPE = "type";
     public static final String KEY_CONTACT_NUMBER = "contact_number";
     public static final String KEY_KITCHEN_IMAGE = "photo";
     public static final String KEY_KITCHEN_PROVIDERS_ID = "id";

@@ -9,6 +9,9 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -28,6 +31,8 @@ import org.json.JSONObject;
 
 import java.net.HttpURLConnection;
 import java.util.ArrayList;
+
+import static com.byteshaft.homemade.MainActivity.sMenuItem;
 
 
 /**
@@ -89,6 +94,22 @@ public class KitchenDishesList extends Fragment implements AdapterView.OnItemCli
             isLongPress = false;
         }
 
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        getActivity().getMenuInflater().inflate(R.menu.main, menu);
+        sMenuItem = menu.findItem(R.id.add_dish_button);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.add_dish_button:
+                MainActivity.getInstance().loadFragment(new AddDishDetails());
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void gettingDishes() {
@@ -169,7 +190,7 @@ public class KitchenDishesList extends Fragment implements AdapterView.OnItemCli
         alertDialogBuilder.setMessage("Do you want to delete this dish?")
                 .setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                deleteTable(dishDetails.getId());
+                deleteDish(dishDetails.getId());
                 dialog.dismiss();
             }
         });
@@ -184,7 +205,7 @@ public class KitchenDishesList extends Fragment implements AdapterView.OnItemCli
         return true;
     }
 
-    private void deleteTable(int id) {
+    private void deleteDish(int id) {
         Log.i("TAG", "id " + id);
         HttpRequest request = new HttpRequest(getActivity().getApplicationContext());
         request.setOnReadyStateChangeListener(new HttpRequest.OnReadyStateChangeListener() {

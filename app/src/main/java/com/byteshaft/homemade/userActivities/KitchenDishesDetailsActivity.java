@@ -1,7 +1,6 @@
 package com.byteshaft.homemade.userActivities;
 
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,7 +11,6 @@ import android.widget.ListView;
 
 import com.byteshaft.homemade.R;
 import com.byteshaft.homemade.adapters.KitchenDishesDetailsAdapters;
-import com.byteshaft.homemade.gettersetter.DishDetails;
 import com.byteshaft.homemade.gettersetter.KitchenDishesDetails;
 import com.byteshaft.homemade.utils.AppGlobals;
 import com.byteshaft.homemade.utils.Helpers;

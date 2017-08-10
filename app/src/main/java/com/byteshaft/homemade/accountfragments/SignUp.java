@@ -2,7 +2,6 @@ package com.byteshaft.homemade.accountfragments;
 
 import android.Manifest;
 import android.app.TimePickerDialog;
-import android.content.Context;
 import android.content.CursorLoader;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -29,11 +28,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -69,7 +66,6 @@ import java.util.Map;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static android.app.Activity.RESULT_OK;
-import static android.content.Context.APP_OPS_SERVICE;
 
 public class SignUp extends Fragment implements View.OnClickListener, GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener,
@@ -97,7 +93,7 @@ public class SignUp extends Fragment implements View.OnClickListener, GoogleApiC
     private String mOpeningTimeString;
     private String mClosingTimeString;
     private String mLocationString;
-//    private String mWorkingDaysString;
+    //    private String mWorkingDaysString;
     private String mDeliveryTimeString;
     private String mAddressString;
 
@@ -228,9 +224,6 @@ public class SignUp extends Fragment implements View.OnClickListener, GoogleApiC
                             AppGlobals.getSwitchValue(), mDeliveryTimeString);
                     System.out.println("POST" + !AppGlobals.isLogin());
                 } else {
-                    mOpeningTimeString = mOpeningTime.getText().toString();
-                    mClosingTimeString = mClosingTime.getText().toString();
-                    mDeliveryTimeString = mDeliveryTime.getText().toString();
                     mEmailAddressString = mEmail.getText().toString();
                     mPasswordString = mPassword.getText().toString();
                     mVerifyPasswordString = mVerifyPassword.getText().toString();
@@ -617,7 +610,6 @@ public class SignUp extends Fragment implements View.OnClickListener, GoogleApiC
         } else {
             mPassword.setError(null);
         }
-
         if (mVerifyPasswordString.trim().isEmpty() || mVerifyPasswordString.length() < 4 ||
                 !mVerifyPasswordString.equals(mPasswordString)) {
             mVerifyPassword.setError("password does not match");
@@ -709,7 +701,7 @@ public class SignUp extends Fragment implements View.OnClickListener, GoogleApiC
                                     AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_KITCHEN_PROVIDERS_ID, KitchenDetailsId);
 
                                     AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_LOCATION, location);
-                                    AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_KITCHEN_IMAGE,  AppGlobals.SERVER_IP_FOR_IMAGE + KitchenImage);
+                                    AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_KITCHEN_IMAGE, AppGlobals.SERVER_IP_FOR_IMAGE + KitchenImage);
                                     AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_TIME_TO_FINISH, timeToFinish);
                                     AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_WORKING_DAYS, workingDays);
                                     Log.i("closingTime", " " + AppGlobals.getStringFromSharedPreferences(AppGlobals.KEY_CLOSING_TIME));

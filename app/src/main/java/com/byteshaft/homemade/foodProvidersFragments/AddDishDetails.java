@@ -16,11 +16,9 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,8 +28,6 @@ import android.widget.Toast;
 
 import com.byteshaft.homemade.MainActivity;
 import com.byteshaft.homemade.R;
-import com.byteshaft.homemade.accountfragments.AccountActivationCode;
-import com.byteshaft.homemade.accountfragments.AccountManagerActivity;
 import com.byteshaft.homemade.gettersetter.DishDetails;
 import com.byteshaft.homemade.utils.AppGlobals;
 import com.byteshaft.homemade.utils.Helpers;
@@ -39,8 +35,6 @@ import com.byteshaft.homemade.utils.RotateUtil;
 import com.byteshaft.requests.FormData;
 import com.byteshaft.requests.HttpRequest;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -113,8 +107,8 @@ public class AddDishDetails extends Fragment implements View.OnClickListener, Ht
             method = "PUT";
             dishId = mBundle.getInt("id");
             mDishName.setText(mBundle.getString("name"));
-            mDishPrice.setText( mBundle.getString("price"));
-            mDishDescriptions.setText( mBundle.getString("description"));
+            mDishPrice.setText(mBundle.getString("price"));
+            mDishDescriptions.setText(mBundle.getString("description"));
             Helpers.getBitMap(mBundle.getString("image"), mProfilePicture);
             mDoneButton.setText("Update");
         }
@@ -333,7 +327,7 @@ public class AddDishDetails extends Fragment implements View.OnClickListener, Ht
     }
 
     private void sendDishDetails(String description, String dishName, String kitchenPhoto, String dishPrice) {
-       HttpRequest request = new HttpRequest(getActivity());
+        HttpRequest request = new HttpRequest(getActivity());
         request.setOnReadyStateChangeListener(this);
         request.setOnErrorListener(this);
         String dialogtext = "Adding Dish...";
