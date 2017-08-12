@@ -36,6 +36,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.byteshaft.homemade.MainActivity;
 import com.byteshaft.homemade.R;
 import com.byteshaft.homemade.utils.AppGlobals;
 import com.byteshaft.homemade.utils.Helpers;
@@ -67,7 +68,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 import static android.app.Activity.RESULT_OK;
 
-public class SignUp extends Fragment implements View.OnClickListener, GoogleApiClient.ConnectionCallbacks,
+public class UpdateProfile extends Fragment implements View.OnClickListener, GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener,
         CompoundButton.OnCheckedChangeListener {
 
@@ -75,8 +76,6 @@ public class SignUp extends Fragment implements View.OnClickListener, GoogleApiC
     private CircleImageView mProfilePicture;
     private EditText mKitchenName;
     private EditText mEmail;
-    private EditText mPassword;
-    private EditText mVerifyPassword;
     private EditText mAddress;
     private EditText mPhoneNumber;
     private EditText mOpeningTime;
@@ -85,24 +84,19 @@ public class SignUp extends Fragment implements View.OnClickListener, GoogleApiC
     private TextView mPickForCurrentLocation;
     private EditText mDeliveryTime;
 
-    private String mEmailAddressString;
     private String mKitchenNameString;
-    private String mPasswordString;
-    private String mVerifyPasswordString;
     private String mPhoneNumberString;
     private String mOpeningTimeString;
     private String mClosingTimeString;
     private String mLocationString;
-    //    private String mWorkingDaysString;
     private String mDeliveryTimeString;
-    private String mAddressString;
 
     private ArrayList<String> mWeekDays;
     private MultiSelectionSpinner mWeekDaysSpinner;
 
     private ArrayList<String> titleArrayList;
 
-    private Button mSignUpButton;
+    private Button mUpdateButton;
     private HttpRequest request;
     private boolean isClosingTime = false;
     private GoogleApiClient mGoogleApiClient;
@@ -125,7 +119,7 @@ public class SignUp extends Fragment implements View.OnClickListener, GoogleApiC
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mBaseView = inflater.inflate(R.layout.fragment_sign_up, container, false);
+        mBaseView = inflater.inflate(R.layout.fragment_update_profile, container, false);
         ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
         ((AppCompatActivity) getActivity()).getSupportActionBar()
                 .setTitle(getResources().getString(R.string.sign_up));
@@ -135,8 +129,6 @@ public class SignUp extends Fragment implements View.OnClickListener, GoogleApiC
         mEmail = (EditText) mBaseView.findViewById(R.id.email_edit_text);
         mKitchenName = (EditText) mBaseView.findViewById(R.id.kitchen_name_edit_text);
         mProfilePicture = (CircleImageView) mBaseView.findViewById(R.id.kitchen_image);
-        mPassword = (EditText) mBaseView.findViewById(R.id.password_edit_text);
-        mVerifyPassword = (EditText) mBaseView.findViewById(R.id.verify_password_edit_text);
         mPhoneNumber = (EditText) mBaseView.findViewById(R.id.mobile_number_edit_text);
         mDeliverySwitch = (Switch) mBaseView.findViewById(R.id.delivery_switch);
         mWeekDaysSpinner = (MultiSelectionSpinner) mBaseView.findViewById(R.id.days_spinner);
@@ -144,10 +136,10 @@ public class SignUp extends Fragment implements View.OnClickListener, GoogleApiC
         mOpeningTime = (EditText) mBaseView.findViewById(R.id.opening_time_edit_text);
         mClosingTime = (EditText) mBaseView.findViewById(R.id.closing_time_edit_text);
         mDeliveryTime = (EditText) mBaseView.findViewById(R.id.delivery_time_edit_text);
-        mSignUpButton = (Button) mBaseView.findViewById(R.id.sign_up_button);
+        mUpdateButton = (Button) mBaseView.findViewById(R.id.update_button);
         mPickForCurrentLocation = (TextView) mBaseView.findViewById(R.id.pick_for_current_location);
 
-        mSignUpButton.setOnClickListener(this);
+        mUpdateButton.setOnClickListener(this);
         mOpeningTime.setOnClickListener(this);
         mClosingTime.setOnClickListener(this);
         mProfilePicture.setOnClickListener(this);
@@ -181,6 +173,27 @@ public class SignUp extends Fragment implements View.OnClickListener, GoogleApiC
             }
         });
         mWeekDaysSpinner.setSelection(savedWorkingDyas);
+        mKitchenName.setText(AppGlobals.getStringFromSharedPreferences(AppGlobals.KEY_KITCHEN_NAME));
+        mEmail.setText(AppGlobals.getStringFromSharedPreferences(AppGlobals.KEY_EMAIL));
+        mEmail.setEnabled(false);
+        mPhoneNumber.setText(AppGlobals.getStringFromSharedPreferences(AppGlobals.KEY_CONTACT_NUMBER));
+        mAddress.setText(AppGlobals.getStringFromSharedPreferences(AppGlobals.KEY_ADDRESS));
+        mOpeningTime.setText(AppGlobals.getStringFromSharedPreferences(AppGlobals.KEY_OPENING_TIME));
+        mClosingTime.setText(AppGlobals.getStringFromSharedPreferences(AppGlobals.KEY_CLOSING_TIME));
+        mDeliveryTime.setText(AppGlobals.getStringFromSharedPreferences(AppGlobals.KEY_TIME_TO_FINISH));
+        mDeliverySwitch.setChecked(AppGlobals.getSwitchValue());
+        if (AppGlobals.isLogin() && AppGlobals.getStringFromSharedPreferences(AppGlobals.KEY_SERVER_IMAGE) != null) {
+            String url = String.format("%s" + AppGlobals
+                    .getStringFromSharedPreferences(AppGlobals.KEY_SERVER_IMAGE), AppGlobals.SERVER_IP_FOR_IMAGE);
+            System.out.println(url + "image upadate");
+            Helpers.getBitMap(url, mProfilePicture);
+        }
+        String[] selected = AppGlobals.getStringFromSharedPreferences(AppGlobals.KEY_WORKING_DAYS).replace("[", "").replace("]", "").split(",");
+        for (String selectedDay : selected) {
+            savedWorkingDyas.add(selectedDay);
+        }
+        mWeekDaysSpinner.setSelection(savedWorkingDyas);
+
         return mBaseView;
     }
 
@@ -188,18 +201,19 @@ public class SignUp extends Fragment implements View.OnClickListener, GoogleApiC
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.sign_up_button:
+            case R.id.update_button:
                 mOpeningTimeString = mOpeningTime.getText().toString();
                 mClosingTimeString = mClosingTime.getText().toString();
                 mDeliveryTimeString = mDeliveryTime.getText().toString();
-                if (validateEditText()) {
-                    registerUser(mEmailAddressString, mKitchenNameString, mPasswordString, mPhoneNumberString
-                            , mLocationString, imageUrl, savedWorkingDyas.toString(), mOpeningTimeString, mClosingTimeString,
-                            AppGlobals.getSwitchValue(), mDeliveryTimeString);
-                }
+                mPhoneNumberString = mPhoneNumber.getText().toString();
+                mKitchenNameString = mKitchenName.getText().toString();
+                registerUser(mKitchenNameString, mPhoneNumberString
+                        , mLocationString, imageUrl, savedWorkingDyas.toString(), mOpeningTimeString, mClosingTimeString,
+                        AppGlobals.getSwitchValue(), mDeliveryTimeString);
                 break;
             case R.id.pick_for_current_location:
                 locationCounter = 0;
+
                 if (ContextCompat.checkSelfPermission(getActivity(),
                         Manifest.permission.ACCESS_COARSE_LOCATION)
                         != PackageManager.PERMISSION_GRANTED) {
@@ -529,56 +543,6 @@ public class SignUp extends Fragment implements View.OnClickListener, GoogleApiC
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
     }
 
-    public boolean validateEditText() {
-        boolean valid = true;
-
-        mEmailAddressString = mEmail.getText().toString();
-        mPasswordString = mPassword.getText().toString();
-        mVerifyPasswordString = mVerifyPassword.getText().toString();
-        mPhoneNumberString = mPhoneNumber.getText().toString();
-        mKitchenNameString = mKitchenName.getText().toString();
-        mAddressString = mAddress.getText().toString();
-
-        if (mEmailAddressString.trim().isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(mEmailAddressString).matches()) {
-            mEmail.setError("please provide a valid email");
-            valid = false;
-        } else {
-            mEmail.setError(null);
-        }
-        if (mKitchenNameString.trim().isEmpty()) {
-            mKitchenName.setError("please provide restaurant name");
-            valid = false;
-        } else {
-            mKitchenName.setError(null);
-        }
-        if (mPhoneNumberString.trim().isEmpty()) {
-            mPhoneNumber.setError(getString(R.string.enter_phone));
-            valid = false;
-        } else {
-            mPhoneNumber.setError(null);
-        }
-        if (mAddressString.trim().isEmpty()) {
-            mAddress.setError(getString(R.string.enter_address));
-            valid = false;
-        } else {
-            mAddress.setError(null);
-        }
-        if (mPasswordString.trim().isEmpty() || mPasswordString.length() < 4) {
-            mPassword.setError("enter at least 4 characters");
-            valid = false;
-        } else {
-            mPassword.setError(null);
-        }
-        if (mVerifyPasswordString.trim().isEmpty() || mVerifyPasswordString.length() < 4 ||
-                !mVerifyPasswordString.equals(mPasswordString)) {
-            mVerifyPassword.setError("password does not match");
-            valid = false;
-        } else {
-            mVerifyPassword.setError(null);
-        }
-        return valid;
-    }
-
     private void timePickerDialog() {
         Calendar mCurrentTime = Calendar.getInstance();
         int hour = mCurrentTime.get(Calendar.HOUR_OF_DAY);
@@ -608,8 +572,7 @@ public class SignUp extends Fragment implements View.OnClickListener, GoogleApiC
 
     }
 
-    private void registerUser(String email, String kitchenName, String password,
-                              String contactNumber, String location, String kitchenPhoto,
+    private void registerUser(String kitchenName, String contactNumber, String location, String kitchenPhoto,
                               String workingDays, String openingTime, String closingTime,
                               boolean deliveryStatus, String deliveryTime) {
         request = new HttpRequest(getActivity());
@@ -622,15 +585,11 @@ public class SignUp extends Fragment implements View.OnClickListener, GoogleApiC
                         Helpers.dismissProgressDialog();
                         switch (request.getStatus()) {
                             case HttpRequest.ERROR_NETWORK_UNREACHABLE:
-                                AppGlobals.alertDialog(getActivity(), getString(R.string.login_failed), getString(R.string.check_internet));
+                                AppGlobals.alertDialog(getActivity(), getString(R.string.update_failed), getString(R.string.check_internet));
                                 break;
                             case HttpURLConnection.HTTP_BAD_REQUEST:
-                                System.out.println(request.getResponseText() + "HTTP_BAD_REQUEST");
                                 break;
-                            case HttpURLConnection.HTTP_UNAUTHORIZED:
-                                AppGlobals.alertDialog(getActivity(), getString(R.string.register_failed), getString(R.string.check_password));
-                                break;
-                            case HttpURLConnection.HTTP_CREATED:
+                            case HttpURLConnection.HTTP_OK:
                                 Toast.makeText(getActivity(), "Activation code has been sent to you! Please check your Email", Toast.LENGTH_SHORT).show();
                                 System.out.println(request.getResponseText() + "working ");
                                 try {
@@ -663,8 +622,9 @@ public class SignUp extends Fragment implements View.OnClickListener, GoogleApiC
                                     AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_SERVER_IMAGE, KitchenImage);
                                     AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_TIME_TO_FINISH, timeToFinish);
                                     AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_WORKING_DAYS, workingDays);
-                                    Log.i("closingTime", " " + AppGlobals.getStringFromSharedPreferences(AppGlobals.KEY_CLOSING_TIME));
-                                    AccountManagerActivity.getInstance().loadFragment(new AccountActivationCode());
+                                    Log.i("closingTime", " " + AppGlobals.getStringFromSharedPreferences(AppGlobals.KEY_SERVER_IMAGE));
+                                    startActivity(new Intent(getActivity(), MainActivity.class));
+
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
@@ -689,13 +649,16 @@ public class SignUp extends Fragment implements View.OnClickListener, GoogleApiC
 
             }
         });
-        request.open("POST", String.format("%sregister", AppGlobals.BASE_URL));
-        request.send(getRegisterData(email, kitchenName, password, contactNumber, location,
+
+        request.open("PUT", String.format("%sme", AppGlobals.BASE_URL));
+        request.setRequestHeader("Authorization", "Token " +
+                AppGlobals.getStringFromSharedPreferences(AppGlobals.KEY_TOKEN));
+        request.send(getRegisterData(kitchenName, contactNumber, location,
                 kitchenPhoto, workingDays, openingTime, closingTime, deliveryStatus, deliveryTime));
-        Helpers.showProgressDialog(getActivity(), "Registering Kitchen...");
+        Helpers.showProgressDialog(getActivity(), "updating profile...");
     }
 
-    private FormData getRegisterData(String email, String kitchenName, String password,
+    private FormData getRegisterData(String kitchenName,
                                      String contactNumber, String location, String kitchenPhoto,
                                      String workingDays, String openingTime, String closingTime,
                                      boolean deliveryStatus, String deliveryTime) {
@@ -711,12 +674,13 @@ public class SignUp extends Fragment implements View.OnClickListener, GoogleApiC
         formData.append(FormData.TYPE_CONTENT_TEXT, "closing_time", closingTime);
         formData.append(FormData.TYPE_CONTENT_TEXT, "delivery", String.valueOf(deliveryStatus));
         formData.append(FormData.TYPE_CONTENT_TEXT, "contact_number", contactNumber);
-        formData.append(FormData.TYPE_CONTENT_TEXT, "location", location);
+
+        if (mLocationString != null && !mLocationString.trim().isEmpty()) {
+            formData.append(FormData.TYPE_CONTENT_TEXT, "location", location);
+        }
         formData.append(FormData.TYPE_CONTENT_TEXT, "time_to_finish", deliveryTime);
         formData.append(FormData.TYPE_CONTENT_TEXT, "type", "3");
-        formData.append(FormData.TYPE_CONTENT_TEXT, "email", email);
         formData.append(FormData.TYPE_CONTENT_TEXT, "name", kitchenName);
-        formData.append(FormData.TYPE_CONTENT_TEXT, "password", password);
         return formData;
 
     }

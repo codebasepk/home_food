@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.byteshaft.homemade.accountfragments.ChangePassword;
+import com.byteshaft.homemade.accountfragments.UpdateProfile;
 import com.byteshaft.homemade.foodProvidersFragments.KitchenDishesList;
 import com.byteshaft.homemade.accountfragments.Login;
 import com.byteshaft.homemade.accountfragments.SignUp;
@@ -60,8 +61,11 @@ public class MainActivity extends AppCompatActivity
         CircleImageView kitchenImage = (CircleImageView) headerView.findViewById(R.id.nav_imageView);
         name.setText(AppGlobals.getStringFromSharedPreferences(AppGlobals.KEY_KITCHEN_NAME));
         email.setText(AppGlobals.getStringFromSharedPreferences(AppGlobals.KEY_EMAIL));
-        if (AppGlobals.isLogin() && AppGlobals.getStringFromSharedPreferences(AppGlobals.KEY_KITCHEN_IMAGE) != null) {
-            String url = AppGlobals.getStringFromSharedPreferences(AppGlobals.KEY_KITCHEN_IMAGE);
+
+        if (AppGlobals.isLogin() && AppGlobals.getStringFromSharedPreferences(AppGlobals.KEY_SERVER_IMAGE) != null) {
+            String url = String.format("%s" + AppGlobals
+                    .getStringFromSharedPreferences(AppGlobals.KEY_SERVER_IMAGE), AppGlobals.SERVER_IP_FOR_IMAGE);
+            System.out.println(url + "image server");
             Helpers.getBitMap(url, kitchenImage);
         }
         loadFragment(new KitchenDishesList());
@@ -90,9 +94,13 @@ public class MainActivity extends AppCompatActivity
             loadFragment(new AddDishDetails());
 
         } else if (id == R.id.update_profile) {
-            loadFragment(new SignUp());
+            loadFragment(new UpdateProfile());
 
-        }  else if (id == R.id.admin_logout) {
+        }  else if (id == R.id.change_password) {
+            loadFragment(new ChangePassword());
+
+        }
+        else if (id == R.id.admin_logout) {
 
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
             alertDialogBuilder.setTitle("Confirmation");
