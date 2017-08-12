@@ -2,7 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
-
         <item
             android:id="@+id/add_dish"
             android:icon="@drawable/menu"
@@ -12,6 +11,10 @@
             android:id="@+id/update_profile"
             android:icon="@drawable/edit_user"
             android:title="Update Profile" />
+        <item
+            android:id="@+id/change_password"
+            android:icon="@drawable/change_password"
+            android:title="Change Password" />
 
         <item
             android:id="@+id/admin_logout"

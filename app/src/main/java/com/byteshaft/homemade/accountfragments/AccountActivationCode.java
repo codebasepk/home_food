@@ -144,7 +144,7 @@ public class AccountActivationCode extends Fragment implements View.OnClickListe
                             boolean deliveryStatus = jsonObject.getBoolean(AppGlobals.KEY_DELIVERY_STATUS);
                             String KitchenDetailsId = jsonObject.getString(AppGlobals.KEY_KITCHEN_PROVIDERS_ID);
                             String location = jsonObject.getString(AppGlobals.KEY_LOCATION);
-                            String KitchenImage = jsonObject.getString(AppGlobals.KEY_KITCHEN_IMAGE);
+                            String KitchenImage = jsonObject.getString(AppGlobals.KEY_SERVER_IMAGE);
                             String timeToFinish = jsonObject.getString(AppGlobals.KEY_TIME_TO_FINISH);
                             String workingDays = jsonObject.getString(AppGlobals.KEY_WORKING_DAYS);
 
@@ -160,7 +160,7 @@ public class AccountActivationCode extends Fragment implements View.OnClickListe
                             AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_KITCHEN_PROVIDERS_ID, KitchenDetailsId);
 
                             AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_LOCATION, location);
-                            AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_KITCHEN_IMAGE, KitchenImage);
+                            AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_SERVER_IMAGE, KitchenImage);
                             AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_TIME_TO_FINISH, timeToFinish);
                             AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_WORKING_DAYS, workingDays);
                             AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_TOKEN, token);

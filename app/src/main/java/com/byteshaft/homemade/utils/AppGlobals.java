@@ -13,7 +13,7 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 public class AppGlobals extends Application {
 
     public static final String SERVER_IP = "http://178.62.67.242:8000/";
-    public static final String SERVER_IP_FOR_IMAGE = " http://46.101.72.82:8000";
+    public static final String SERVER_IP_FOR_IMAGE = "http://178.62.67.242:8000";
     public static final String BASE_URL = String.format("%sapi/", SERVER_IP);
     private static Context sContext;
     public static final String KEY_LOGIN = "login";
@@ -24,7 +24,8 @@ public class AppGlobals extends Application {
     public static final String KEY_LOCATION = "location";
     public static final String KEY_EMAIL = "email";
     public static final String KEY_CONTACT_NUMBER = "contact_number";
-    public static final String KEY_KITCHEN_IMAGE = "photo";
+    public static final String KEY_KITCHEN_IMAGE = "image";
+    public static final String KEY_SERVER_IMAGE = "photo";
     public static final String KEY_KITCHEN_PROVIDERS_ID = "id";
     public static final String KEY_DELIVERY_STATUS = "delivery";
     public static final String KEY_TIME_TO_FINISH = "time_to_finish";

@@ -153,7 +153,7 @@ public class Login extends Fragment implements View.OnClickListener, HttpRequest
                             boolean deliveryStatus = jsonObject.getBoolean(AppGlobals.KEY_DELIVERY_STATUS);
                             String KitchenDetailsId = jsonObject.getString(AppGlobals.KEY_KITCHEN_PROVIDERS_ID);
                             String location = jsonObject.getString(AppGlobals.KEY_LOCATION);
-                            String KitchenImage = jsonObject.getString(AppGlobals.KEY_KITCHEN_IMAGE);
+                            String KitchenImage = jsonObject.getString(AppGlobals.KEY_SERVER_IMAGE);
                             String timeToFinish = jsonObject.getString(AppGlobals.KEY_TIME_TO_FINISH);
                             String workingDays = jsonObject.getString(AppGlobals.KEY_WORKING_DAYS);
 
@@ -170,7 +170,7 @@ public class Login extends Fragment implements View.OnClickListener, HttpRequest
                             AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_KITCHEN_PROVIDERS_ID, KitchenDetailsId);
 
                             AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_LOCATION, location);
-                            AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_KITCHEN_IMAGE,  AppGlobals.SERVER_IP_FOR_IMAGE + KitchenImage);
+                            AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_SERVER_IMAGE, KitchenImage);
                             AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_TIME_TO_FINISH, timeToFinish);
                             AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_WORKING_DAYS, workingDays);
                             Log.i("token", " " + AppGlobals.getStringFromSharedPreferences(AppGlobals.KEY_TOKEN));
@@ -235,7 +235,7 @@ public class Login extends Fragment implements View.OnClickListener, HttpRequest
                                     AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_KITCHEN_PROVIDERS_ID, KitchenDetailsId);
 
                                     AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_LOCATION, location);
-                                    AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_KITCHEN_IMAGE, KitchenImage);
+                                    AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_SERVER_IMAGE, KitchenImage);
                                     AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_TIME_TO_FINISH, timeToFinish);
                                     AppGlobals.saveDataToSharedPreferences(AppGlobals.KEY_WORKING_DAYS, workingDays);
                                     Log.i("closingTime", " " + AppGlobals.getStringFromSharedPreferences(AppGlobals.KEY_CLOSING_TIME));

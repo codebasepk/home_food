@@ -43,4 +43,15 @@
     <string name="check_password">Please enter correct password</string>
     <string name="email_not_exist">Email does not exist on server</string>
     <string name="activate_your_account">Please activate your account !</string>
+    <string name="update_button">UPDATE</string>
+    <string name="deliverable_status">Deliverable :</string>
+    <string name="select_working_days">Select Working Days :</string>
+    <string name="delivery_time">Delivery Time</string>
+    <string name="closing_time">Closing Time</string>
+    <string name="opening_time">Opening Time</string>
+    <string name="kitchen_other_details_optional">Kitchen Other Details(optional)</string>
+    <string name="current_location_address">Current location address</string>
+    <string name="pick_for_current_location_text_view">Pick for current location</string>
+    <string name="mobile_number">Mobile number</string>
+    <string name="kitchen_name">Kitchen name</string>
 </resources>

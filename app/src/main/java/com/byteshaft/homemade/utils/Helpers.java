@@ -105,7 +105,7 @@ public class Helpers {
             DisplayImageOptions options;
             options = new DisplayImageOptions.Builder()
                     .showImageOnFail(R.mipmap.dish)
-                    .showImageOnLoading(R.mipmap.dish)
+                    .showImageOnLoading(R.drawable.camera)
                     .imageScaleType(ImageScaleType.IN_SAMPLE_INT)
                     .cacheInMemory(false)
                     .cacheOnDisc(false).considerExifParams(true).build();
