@@ -80,13 +80,13 @@ public class AccountActivationCode extends Fragment implements View.OnClickListe
         System.out.println(mVerificationCodeString);
 
         if (mEmailString.trim().isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(mEmailString).matches()) {
-            mEmail.setError("please provide a valid email");
+            mEmail.setError(getString(R.string.provide_email));
             valid = false;
         } else {
             mEmail.setError(null);
         }
         if (mVerificationCodeString.trim().isEmpty() || mVerificationCodeString.length() < 6) {
-            mVerificationCode.setError("Verification code must be 6 characters");
+            mVerificationCode.setError(getString(R.string.verification_code_length));
             valid = false;
         } else {
             mVerificationCode.setError(null);
@@ -100,7 +100,7 @@ public class AccountActivationCode extends Fragment implements View.OnClickListe
         request.setOnErrorListener(this);
         request.open("POST", String.format("%sactivate", AppGlobals.BASE_URL));
         request.send(getUserActivationData(email, emailOtp));
-        Helpers.showProgressDialog(getActivity(), "Activating User...");
+        Helpers.showProgressDialog(getActivity(), getString(R.string.activating_user));
     }
 
 
@@ -123,13 +123,13 @@ public class AccountActivationCode extends Fragment implements View.OnClickListe
                 Helpers.dismissProgressDialog();
                 switch (request.getStatus()) {
                     case HttpURLConnection.HTTP_BAD_REQUEST:
-                        Toast.makeText(getActivity(), "Please enter correct account Verification code", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), R.string.correct_account_verification_code, Toast.LENGTH_LONG).show();
                         break;
                     case HttpRequest.ERROR_NETWORK_UNREACHABLE:
-                        AppGlobals.alertDialog(getActivity(), "Sending Failed!", "please check your internet connection !");
+                        AppGlobals.alertDialog(getActivity(), getString(R.string.sending_failed), getString(R.string.check_internet));
                         break;
                     case HttpURLConnection.HTTP_FORBIDDEN:
-                        AppGlobals.alertDialog(getActivity(), "Activation Failed!", "User deactivated by admin!");
+                        AppGlobals.alertDialog(getActivity(), getString(R.string.acticvtion_failed), getString(R.string.deactiveed_by_admin));
                         break;
                     case HttpURLConnection.HTTP_OK:
                         try {
@@ -183,7 +183,7 @@ public class AccountActivationCode extends Fragment implements View.OnClickListe
         Helpers.dismissProgressDialog();
         switch (readyState) {
             case HttpRequest.ERROR_CONNECTION_TIMED_OUT:
-                Helpers.showSnackBar(getView(), "connection time out");
+                Helpers.showSnackBar(getView(), getString(R.string.connection_time_out));
                 break;
             case HttpRequest.ERROR_NETWORK_UNREACHABLE:
                 Helpers.showSnackBar(getView(), exception.getLocalizedMessage());

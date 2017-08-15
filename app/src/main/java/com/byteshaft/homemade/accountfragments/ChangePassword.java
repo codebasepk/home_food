@@ -68,7 +68,7 @@ public class ChangePassword extends Fragment implements View.OnClickListener,
         mVerifyPasswordString = mVerifyPassword.getText().toString();
 
         if (mNewPasswordString.trim().isEmpty() || mNewPasswordString.length() < 4) {
-            mNewPassword.setError("enter at least 4 characters");
+            mNewPassword.setError(getString(R.string.password_four_length));
             valid = false;
         } else {
             mNewPassword.setError(null);
@@ -76,7 +76,7 @@ public class ChangePassword extends Fragment implements View.OnClickListener,
 
         if (mVerifyPasswordString.trim().isEmpty() || mVerifyPasswordString.length() < 4 ||
                 !mVerifyPasswordString.equals(mNewPasswordString)) {
-            mVerifyPassword.setError("password does not match");
+            mVerifyPassword.setError(getString(R.string.password_not_match));
             valid = false;
         } else {
             mVerifyPassword.setError(null);
@@ -92,7 +92,7 @@ public class ChangePassword extends Fragment implements View.OnClickListener,
         request.setRequestHeader("Authorization", "Token " +
                 AppGlobals.getStringFromSharedPreferences(AppGlobals.KEY_TOKEN));
         request.send(getUserChangePassword(password));
-        Helpers.showProgressDialog(getActivity(), "Updating your password");
+        Helpers.showProgressDialog(getActivity(), getString(R.string.updating_password));
 
     }
 
@@ -114,12 +114,12 @@ public class ChangePassword extends Fragment implements View.OnClickListener,
                 Helpers.dismissProgressDialog();
                 switch (request.getStatus()) {
                     case HttpRequest.ERROR_NETWORK_UNREACHABLE:
-                        AppGlobals.alertDialog(getActivity(), "Update Failed!", "please check your internet connection");
+                        AppGlobals.alertDialog(getActivity(), getString(R.string.update_failed), getString(R.string.check_internet));
                         break;
                     case HttpURLConnection.HTTP_OK:
                         System.out.println(request.getResponseText() + "working ");
                         startActivity(new Intent(getActivity(), MainActivity.class));
-                        Toast.makeText(getActivity(), "Your password successfully changed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), getString(R.string.password_changed), Toast.LENGTH_SHORT).show();
                 }
         }
     }
@@ -129,7 +129,7 @@ public class ChangePassword extends Fragment implements View.OnClickListener,
         Helpers.dismissProgressDialog();
         switch (readyState) {
             case HttpRequest.ERROR_CONNECTION_TIMED_OUT:
-                Helpers.showSnackBar(getView(), "connection time out");
+                Helpers.showSnackBar(getView(), getString(R.string.connection_time_out));
                 break;
             case HttpRequest.ERROR_NETWORK_UNREACHABLE:
                 Helpers.showSnackBar(getView(), exception.getLocalizedMessage());

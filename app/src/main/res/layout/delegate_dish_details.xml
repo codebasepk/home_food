@@ -49,7 +49,7 @@
             <TextView
                 android:id="@+id/dish_name_title"
                 android:textSize="15sp"
-                android:text="Dish Name : "
+                android:text="@string/dish_name"
                 android:layout_marginTop="15dp"
                 android:textColor="#000"
                 android:layout_width="wrap_content"
@@ -60,7 +60,7 @@
                 android:layout_marginTop="18dp"
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@+id/dish_name_title"
-                android:text="Name"
+                android:text="@string/name_delegate"
                 android:textColor="#000"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -77,7 +77,7 @@
             <TextView
                 android:id="@+id/dish_price_title"
                 android:textSize="15sp"
-                android:text="Dish Price : "
+                android:text="@string/dish_price"
                 android:textColor="#000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -85,7 +85,7 @@
             <TextView
                 android:id="@+id/dish_price"
                 android:layout_toRightOf="@+id/dish_price_title"
-                android:text="$50"
+                android:text="@string/_50"
                 android:layout_marginTop="2dp"
                 android:textColor="#000"
                 android:layout_width="match_parent"

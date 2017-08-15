@@ -26,7 +26,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:background="@drawable/edit_text_background"
-                    android:hint="Email"
+                    android:hint="@string/email"
                     android:textColorHint="#000"
                     android:textColor="#000"
                     android:inputType="textEmailAddress"
@@ -44,7 +44,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:background="@drawable/edit_text_background"
-                    android:hint="Password"
+                    android:hint="@string/password"
                     android:textColorHint="#000"
                     android:textColor="#000"
                     android:inputType="textPassword"
@@ -60,7 +60,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_gravity="end"
                 android:textColor="#000"
-                android:text="Forgot Password?"
+                android:text="@string/forgot_password"
                 android:textSize="15sp" />
 
             <android.support.v7.widget.AppCompatButton
@@ -78,7 +78,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_gravity="center_horizontal"
-                android:text="Don't have an account? SignUp"
+                android:text="@string/don_t_have_an_account_signup"
                 android:textColor="#000"
                 android:textSize="15sp" />
         </LinearLayout>

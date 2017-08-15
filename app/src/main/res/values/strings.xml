@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HomeMade</string>
+    <string name="app_name">Mamas Food</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -40,6 +40,7 @@
     <string name="register_failed">Registration Failed!</string>
     <string name="update_failed">Update Failed!</string>
     <string name="table_failed">Table details Failed!</string>
+    <string name="password_changed">Your password successfully changed</string>
     <string name="check_password">Please enter correct password</string>
     <string name="email_not_exist">Email does not exist on server</string>
     <string name="activate_your_account">Please activate your account !</string>
@@ -54,4 +55,44 @@
     <string name="pick_for_current_location_text_view">Pick for current location</string>
     <string name="mobile_number">Mobile number</string>
     <string name="kitchen_name">Kitchen name</string>
+    <string name="new_password">New password</string>
+    <string name="verify_password">Verify password</string>
+    <string name="update">UPDATE</string>
+    <string name="send">SEND</string>
+    <string name="password">Password</string>
+    <string name="don_t_have_an_account_signup">Don't have an account? SignUp</string>
+    <string name="email_otp">Email otp</string>
+    <string name="reset">RESET</string>
+    <string name="deliverable">Deliverable :</string>
+    <string name="create_account">CREATE ACCOUNT</string>
+    <string name="dish_name">Dish name</string>
+    <string name="dish_price">Dish price</string>
+    <string name="add_dish_details">Dish details</string>
+    <string name="name"> Name</string>
+    <string name="name_delegate">: Name</string>
+    <string name="_50">: $50</string>
+    <string name="dish_descriptions">Dish Descriptions</string>
+    <string name="working_days">Working days :</string>
+    <string name="call">Call :</string>
+    <string name="order_time">Order Time :</string>
+    <string name="end_time">End Time :</string>
+    <string name="start_time">Start Time :</string>
+    <string name="location">Location :</string>
+    <string name="kitchen_name_delegate">Kitchen Name :</string>
+    <string name="cancel">Cancel</string>
+    <string name="location_not_enabled">Location is not enabled</string>
+    <string name="ok">Ok</string>
+    <string name="apply">Apply</string>
+    <string name="please_select_radius">Please select radius!</string>
+    <string name="provide_email">please provide a valid email</string>
+    <string name="verification_code_length">Verification code must be 6 characters</string>
+    <string name="activating_user">Activating User...</string>
+    <string name="correct_account_verification_code">Please enter correct account Verification code</string>
+    <string name="sending_failed">Sending Failed!</string>
+    <string name="acticvtion_failed">Activation Failed!</string>
+    <string name="deactiveed_by_admin">User deactivated by admin!</string>
+    <string name="connection_time_out">connection time out</string>
+    <string name="password_four_length">enter at least 4 characters</string>
+    <string name="password_not_match">password does not match</string>
+    <string name="updating_password">Updating your password</string>
 </resources>

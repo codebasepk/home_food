@@ -10,7 +10,7 @@
         android:id="@+id/select_radius"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Please select radius!"
+        android:text="@string/please_select_radius"
         android:textColor="@color/colorPrimary"
         android:layout_marginLeft="10dp"
         android:textSize="18dp" />
@@ -43,7 +43,7 @@
             android:layout_alignParentLeft="true"
             android:layout_marginTop="5dp"
             android:textColor="#000"
-            android:text="Cancel"
+            android:text="@string/cancel"
             android:textSize="18sp" />
 
         <TextView
@@ -53,7 +53,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginTop="5dp"
             android:textColor="#000"
-            android:text="Apply"
+            android:text="@string/apply"
             android:textSize="18sp" />
 
 

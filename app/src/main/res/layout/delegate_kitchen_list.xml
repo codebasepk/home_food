@@ -59,7 +59,7 @@
                 <TextView
                     android:id="@+id/kitchen_name_title"
                     android:textSize="13sp"
-                    android:text="Kitchen Name : "
+                    android:text="@string/kitchen_name_delegate"
                     android:layout_marginTop="15dp"
                     android:textColor="#000"
                     android:layout_width="wrap_content"
@@ -88,7 +88,7 @@
                 <TextView
                     android:id="@+id/delivery_status_title"
                     android:textSize="13sp"
-                    android:text="Deliverable :"
+                    android:text="@string/deliverable"
                     android:textColor="#000"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -113,7 +113,7 @@
                 <TextView
                     android:id="@+id/location_title"
                     android:textSize="13sp"
-                    android:text="Location :"
+                    android:text="@string/location"
                     android:textColor="#000"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -156,7 +156,7 @@
                 <TextView
                     android:id="@+id/opening_time_title"
                     android:textSize="13sp"
-                    android:text="Start Time :"
+                    android:text="@string/start_time"
                     android:textColor="#000"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -180,7 +180,7 @@
                 <TextView
                     android:id="@+id/closing_time_title"
                     android:textSize="13sp"
-                    android:text="End Time :"
+                    android:text="@string/end_time"
                     android:textColor="#000"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -214,7 +214,7 @@
                 <TextView
                     android:id="@+id/order_time_title"
                     android:textSize="13sp"
-                    android:text="Order Time :"
+                    android:text="@string/order_time"
                     android:textColor="#000"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -236,7 +236,7 @@
                     <TextView
                         android:id="@+id/contact_title"
                         android:textSize="13sp"
-                        android:text="Call :"
+                        android:text="@string/call"
                         android:textColor="#000"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -263,7 +263,7 @@
                 <TextView
                     android:id="@+id/working_days_title"
                     android:textSize="13sp"
-                    android:text="Working days :"
+                    android:text="@string/working_days"
                     android:textColor="#000"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
