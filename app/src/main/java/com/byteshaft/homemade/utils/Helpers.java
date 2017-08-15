@@ -73,7 +73,7 @@ public class Helpers {
     public static void alertDialog(Activity activity, String title, String msg, final SwitchCompat compat) {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(activity);
         alertDialogBuilder.setTitle(title);
-        alertDialogBuilder.setMessage(msg).setCancelable(false).setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+        alertDialogBuilder.setMessage(msg).setCancelable(false).setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 if (compat != null) {
                     compat.setChecked(false);
@@ -169,7 +169,7 @@ public class Helpers {
 
     public static void dialogForLocationEnableManually(final Activity activity) {
         AlertDialog.Builder dialog = new AlertDialog.Builder(activity);
-        dialog.setMessage("Location is not enabled");
+        dialog.setMessage(R.string.location_not_enabled);
         dialog.setPositiveButton("Turn on", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface paramDialogInterface, int paramInt) {
@@ -179,7 +179,7 @@ public class Helpers {
                 //get gps
             }
         });
-        dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        dialog.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface paramDialogInterface, int paramInt) {

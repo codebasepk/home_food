@@ -77,8 +77,6 @@ public class KitchenDishesDetailsActivity extends AppCompatActivity implements
         request.setOnReadyStateChangeListener(this);
         request.setOnErrorListener(this);
         request.open("GET", String.format("%sfood-providers/%s/menu/", AppGlobals.BASE_URL, kitchenId));
-        request.setRequestHeader("Authorization", "Token " +
-                AppGlobals.getStringFromSharedPreferences(AppGlobals.KEY_TOKEN));
         request.send();
     }
 

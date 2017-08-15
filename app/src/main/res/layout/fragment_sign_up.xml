@@ -35,7 +35,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:background="@drawable/edit_text_background"
-                        android:hint="Kitchen name"
+                        android:hint="@string/kitchen_name"
                         android:inputType="text"
                         android:paddingLeft="10sp"
                         android:paddingTop="@dimen/floating_hint_margin"
@@ -53,7 +53,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:background="@drawable/edit_text_background"
-                        android:hint="Email"
+                        android:hint="@string/email"
                         android:inputType="textEmailAddress"
                         android:paddingLeft="10sp"
                         android:paddingTop="@dimen/floating_hint_margin"
@@ -71,7 +71,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:background="@drawable/edit_text_background"
-                        android:hint="Mobile number"
+                        android:hint="@string/mobile_number"
                         android:paddingLeft="10sp"
                         android:paddingTop="@dimen/floating_hint_margin"
                         android:textColorHint="#000"
@@ -88,7 +88,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:background="@drawable/edit_text_background"
-                        android:hint="Password"
+                        android:hint="@string/password"
                         android:inputType="textPassword"
                         android:paddingLeft="10sp"
                         android:textColorHint="#000"
@@ -106,7 +106,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:background="@drawable/edit_text_background"
-                        android:hint="Verify password"
+                        android:hint="@string/verify_password"
                         android:inputType="textPassword"
                         android:textColorHint="#000"
                         android:textColor="#000"
@@ -124,7 +124,7 @@
                     android:gravity="center"
                     android:textColorHint="#000"
                     android:textColor="#000"
-                    android:text="Pick for current location"/>
+                    android:text="@string/pick_for_current_location"/>
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
@@ -135,7 +135,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:background="@drawable/edit_text_background"
-                        android:hint="Current location address"
+                        android:hint="@string/current_location_address"
                         android:inputType="text"
                         android:paddingLeft="10sp"
                         android:enabled="false"
@@ -155,7 +155,7 @@
                     android:background="#F57C00"
                     android:textSize="15sp"
                     android:layout_gravity="center_vertical"
-                    android:text="Kitchen Other Details(optional)"/>
+                    android:text="@string/kitchen_other_details_optional"/>
 
                 <LinearLayout
                     android:id="@+id/edit_text_layout"
@@ -180,7 +180,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
                                 android:background="@drawable/edit_text_background"
-                                android:hint="Opening Time"
+                                android:hint="@string/opening_time"
                                 android:inputType="number"
                                 android:paddingLeft="10sp"
                                 android:paddingTop="@dimen/floating_hint_margin"
@@ -206,7 +206,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
                                 android:background="@drawable/edit_text_background"
-                                android:hint="Closing Time"
+                                android:hint="@string/closing_time"
                                 android:inputType="number"
                                 android:paddingLeft="10sp"
                                 android:paddingTop="@dimen/floating_hint_margin"
@@ -225,7 +225,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:background="@drawable/edit_text_background"
-                        android:hint="Delivery Time"
+                        android:hint="@string/delivery_time"
                         android:inputType="number"
                         android:paddingLeft="10sp"
                         android:textColorHint="#000"
@@ -257,7 +257,7 @@
                             android:textSize="15sp"
                             android:textColor="#000"
                             android:layout_gravity="center_vertical"
-                            android:text="Select Working Days :"/>
+                            android:text="@string/select_working_days"/>
                     </RelativeLayout>
                     <RelativeLayout
                         android:id="@+id/spinner_layout"
@@ -297,7 +297,7 @@
                             android:textSize="15sp"
                             android:textColor="#000"
                             android:layout_gravity="center_vertical"
-                            android:text="Deliverable :"/>
+                            android:text="@string/deliverable"/>
                     </RelativeLayout>
                     <RelativeLayout
                         android:id="@+id/delivery_switch_layout"
@@ -320,7 +320,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/login_button_background"
-                    android:text="CREATE ACCOUNT"
+                    android:text="@string/create_account"
                     android:layout_marginBottom="10dp"
                     android:textColor="#000" />
             </LinearLayout>
