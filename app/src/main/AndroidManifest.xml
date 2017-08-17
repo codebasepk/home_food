@@ -35,9 +35,10 @@
 
         </activity>
         <activity android:name=".userActivities.KitchenDishesDetailsActivity"/>
-        <activity android:name=".userActivities.KitchensListActivity">
+        <activity android:name=".userActivities.KitchensListActivity"/>
+        <activity android:name=".userActivities.ProductImageView"/>
 
-        </activity>
+
 
     </application>
 

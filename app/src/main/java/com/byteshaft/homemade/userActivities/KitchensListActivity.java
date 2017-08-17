@@ -71,11 +71,12 @@ public class KitchensListActivity extends AppCompatActivity implements AdapterVi
     private int locationCounter = 0;
     private static final int LOCATION_PERMISSION = 4;
 
-    private int mRadiusString = 10;
+    private int mRadiusString = AppGlobals.getSeekBarValueFromSharedPreferences(AppGlobals.KEY_SEEK_BAR_VALUE);
     private String mLocationString;
 
     private int currentArraySize = 0;
     public static boolean updated = false;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -84,6 +85,9 @@ public class KitchensListActivity extends AppCompatActivity implements AdapterVi
         mKitchenListView = (ListView) findViewById(R.id.kitchen_list);
         mKitchenListView.setOnItemClickListener(this);
         locationMethod();
+
+        System.out.println(mRadiusString + "value");
+
     }
 
     @Override
@@ -126,7 +130,6 @@ public class KitchensListActivity extends AppCompatActivity implements AdapterVi
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.radius:
-                Toast.makeText(this, "Click", Toast.LENGTH_SHORT).show();
                 radiusDialog();
                 break;
             case R.id.refresh:
@@ -144,7 +147,6 @@ public class KitchensListActivity extends AppCompatActivity implements AdapterVi
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_layout);
         dialog.setCancelable(false);
-
         dialog.show();
         SeekBar seekbar = (SeekBar) dialog.findViewById(R.id.seek_bar);
         final TextView seekBarValue = (TextView) dialog.findViewById(R.id.value_text_view);
@@ -152,10 +154,12 @@ public class KitchensListActivity extends AppCompatActivity implements AdapterVi
         final TextView doneTextView = (TextView) dialog.findViewById(R.id.done_text_view);
         seekbar.setMax(100);
         seekbar.setKeyProgressIncrement(1);
+        seekbar.setProgress(AppGlobals.getSeekBarValueFromSharedPreferences(AppGlobals.KEY_SEEK_BAR_VALUE));
         seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 seekBarValue.setText("" + progress);
+                AppGlobals.saveSeekBarvalueToSharedPreferences(AppGlobals.KEY_SEEK_BAR_VALUE, progress);
             }
 
             @Override
@@ -182,6 +186,7 @@ public class KitchensListActivity extends AppCompatActivity implements AdapterVi
                 mRadiusString = Integer.valueOf(seekBarValue.getText().toString());
                 locationMethod();
                 getAllKitchens(mLocationString, String.valueOf(mRadiusString));
+                System.out.println(mRadiusString + "radius value");
                 dialog.dismiss();
             }
         });
@@ -207,9 +212,18 @@ public class KitchensListActivity extends AppCompatActivity implements AdapterVi
                                 kitchenList.setKitchenPhoneNumber(jsonObject.getString("contact_number"));
                                 kitchenList.setKitchenLocation(jsonObject.getString("location"));
                                 kitchenList.setKitchenName(jsonObject.getString("name"));
-                                kitchenList.setOrderTime(jsonObject.getString("time_to_finish"));
-                                kitchenList.setOpeningTime(jsonObject.getString("opening_time"));
-                                kitchenList.setClosingTime(jsonObject.getString("closing_time"));
+
+                                if (jsonObject.isNull("opening_time")) {
+                                    kitchenList.setOpeningTime("N/A");
+                                } else {
+                                    kitchenList.setOpeningTime(jsonObject.getString("opening_time"));
+                                }
+                                if (jsonObject.isNull("closing_time")) {
+                                    kitchenList.setClosingTime("N/A");
+                                } else {
+                                    kitchenList.setClosingTime(jsonObject.getString("closing_time"));
+                                }
+
                                 kitchenList.setDeliverable(jsonObject.getBoolean("delivery"));
                                 kitchenList.setWorkingDays(jsonObject.getString("working_days"));
                                 kitchenList.setKitchenImage(jsonObject.getString("photo"));
@@ -260,6 +274,7 @@ public class KitchensListActivity extends AppCompatActivity implements AdapterVi
             mLocationString = location.getLatitude() + "," + location.getLongitude();
             System.out.println(mLocationString);
             if (mLocationString != null && !mLocationString.trim().isEmpty())
+                System.out.println(mRadiusString + "value");
                 getAllKitchens(mLocationString, String.valueOf(mRadiusString));
         }
 
