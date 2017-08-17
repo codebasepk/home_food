@@ -75,7 +75,7 @@
                 <TextView
                     android:id="@+id/dish_price_title"
                     android:textSize="15sp"
-                    android:text="Dish Price : "
+                    android:text="@string/dish_price_delegate"
                     android:textColor="#000"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />

@@ -81,12 +81,12 @@
     <string name="kitchen_name_delegate">Kitchen Name :</string>
     <string name="cancel">Cancel</string>
     <string name="location_not_enabled">Location is not enabled</string>
-    <string name="ok">Ok</string>
+    <string name="ok">OK</string>
     <string name="apply">Apply</string>
     <string name="please_select_radius">Please select radius!</string>
     <string name="provide_email">please provide a valid email</string>
     <string name="verification_code_length">Verification code must be 6 characters</string>
-    <string name="activating_user">Activating User...</string>
+    <string name="activating_user">Activating User…</string>
     <string name="correct_account_verification_code">Please enter correct account Verification code</string>
     <string name="sending_failed">Sending Failed!</string>
     <string name="acticvtion_failed">Activation Failed!</string>
@@ -95,4 +95,5 @@
     <string name="password_four_length">enter at least 4 characters</string>
     <string name="password_not_match">password does not match</string>
     <string name="updating_password">Updating your password</string>
+    <string name="dish_price_delegate">Dish Price :</string>
 </resources>
