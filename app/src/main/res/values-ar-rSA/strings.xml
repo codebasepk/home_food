@@ -86,7 +86,7 @@
     <string name="please_select_radius">يرجى تحديد دائرة نصف قطرها!</string>
     <string name="provide_email">يرجى تقديم عنوان بريد إلكتروني صالح</string>
     <string name="verification_code_length">يجب أن يتكون رمز التحقق من 6 أحرف</string>
-    <string name="activating_user">جار تنشيط المستخدم ...</string>
+    <string name="activating_user">جار تنشيط المستخدم …</string>
     <string name="correct_account_verification_code">الرجاء إدخال الرمز الصحيح للتحقق من الحساب</string>
     <string name="sending_failed">لقد تعذر الارسال!</string>
     <string name="acticvtion_failed">فشل التفعيل!</string>
@@ -95,4 +95,5 @@
     <string name="password_four_length">أدخل 4 أحرف على الأقل</string>
     <string name="password_not_match">كلمة السر غير متطابقة</string>
     <string name="updating_password">تحديث كلمة المرور</string>
+    <string name="dish_price_delegate">صحن سعر :</string>
 </resources>
