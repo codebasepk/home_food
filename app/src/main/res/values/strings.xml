@@ -60,7 +60,7 @@
     <string name="update">UPDATE</string>
     <string name="send">SEND</string>
     <string name="password">Password</string>
-    <string name="don_t_have_an_account_signup">Don't have an account? SignUp</string>
+    <string name="don_t_have_an_account_signup">Don\'t have an account? SignUp</string>
     <string name="email_otp">Email otp</string>
     <string name="reset">RESET</string>
     <string name="deliverable">Deliverable :</string>

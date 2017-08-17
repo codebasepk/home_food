@@ -36,6 +36,7 @@ public class AppGlobals extends Application {
     public static final String KEY_SWITCH_STATE = "switch";
     public static final String USER_ACTIVATION_KEY = "activation_key";
     public static final int LOCATION_ENABLE = 3;
+    public static final String KEY_SEEK_BAR_VALUE = "seek_bar_value";
     public static ImageLoader sImageLoader;
 
 
@@ -68,6 +69,16 @@ public class AppGlobals extends Application {
     public static String getStringFromSharedPreferences(String key) {
         SharedPreferences sharedPreferences = getPreferenceManager();
         return sharedPreferences.getString(key, "");
+    }
+
+    public static void saveSeekBarvalueToSharedPreferences(String key, int value) {
+        SharedPreferences sharedPreferences = getPreferenceManager();
+        sharedPreferences.edit().putInt(key, value).apply();
+    }
+
+    public static int getSeekBarValueFromSharedPreferences(String key) {
+        SharedPreferences sharedPreferences = getPreferenceManager();
+        return sharedPreferences.getInt(key, 10);
     }
 
     public static void loginState(boolean type) {
