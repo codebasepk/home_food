@@ -150,7 +150,6 @@ public class MainActivity extends AppCompatActivity
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
         fragmentTransaction.replace(R.id.container, fragment, backStateName);
-        Log.i("TAg", "name: " + fragment.getActivity().getClass().getSimpleName());
         fragmentTransaction.addToBackStack(backStateName);
         fragmentTransaction.commit();
     }
