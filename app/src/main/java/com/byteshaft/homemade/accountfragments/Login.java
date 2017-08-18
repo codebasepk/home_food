@@ -139,7 +139,6 @@ public class Login extends Fragment implements View.OnClickListener, HttpRequest
                         break;
 
                     case HttpURLConnection.HTTP_OK:
-                        System.out.println(request.getResponseText() + "working ");
                         try {
                             JSONObject jsonObject = new JSONObject(request.getResponseText());
                             String token = jsonObject.getString(AppGlobals.KEY_TOKEN);
