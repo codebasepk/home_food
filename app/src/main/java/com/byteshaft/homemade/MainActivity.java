@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.byteshaft.homemade.accountfragments.AccountManagerActivity;
 import com.byteshaft.homemade.accountfragments.ChangePassword;
 import com.byteshaft.homemade.accountfragments.UpdateProfile;
 import com.byteshaft.homemade.foodProvidersFragments.KitchenDishesList;
@@ -37,18 +39,22 @@ public class MainActivity extends AppCompatActivity
     }
 
     public static MenuItem sMenuItem;
+    private ActionBarDrawerToggle toggle;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if (AccountManagerActivity.getInstance() != null) {
+            AccountManagerActivity.getInstance().finish();
+        }
         sInstance = this;
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         View headerView;
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+        toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
@@ -83,6 +89,10 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    public void showHamburger() {
+        toggle.setDrawerIndicatorEnabled(true);
+        toggle.syncState();
+    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -133,5 +143,15 @@ public class MainActivity extends AppCompatActivity
         FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
         tx.replace(R.id.container, fragment);
         tx.commit();
+    }
+
+    public void loadFragmentWithBackStack(Fragment fragment) {
+        String backStateName = fragment.getClass().getName();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
+        fragmentTransaction.replace(R.id.container, fragment, backStateName);
+        Log.i("TAg", "name: " + fragment.getActivity().getClass().getSimpleName());
+        fragmentTransaction.addToBackStack(backStateName);
+        fragmentTransaction.commit();
     }
 }

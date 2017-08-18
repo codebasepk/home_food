@@ -15,7 +15,9 @@ import android.view.View;
 import android.widget.Button;
 
 import com.byteshaft.homemade.accountfragments.AccountManagerActivity;
+import com.byteshaft.homemade.accountfragments.Login;
 import com.byteshaft.homemade.userActivities.KitchensListActivity;
+import com.byteshaft.homemade.utils.AppGlobals;
 import com.byteshaft.homemade.utils.Helpers;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationRequest;
@@ -44,7 +46,6 @@ public class SelectUser extends AppCompatActivity implements View.OnClickListene
         mFoodProviderButton = (Button) findViewById(R.id.food_provider_button);
         mUserButton.setOnClickListener(this);
         mFoodProviderButton.setOnClickListener(this);
-
         locationCounter = 0;
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_COARSE_LOCATION)
@@ -116,7 +117,11 @@ public class SelectUser extends AppCompatActivity implements View.OnClickListene
 
                 break;
             case R.id.food_provider_button:
-                startActivity(new Intent(this, AccountManagerActivity.class));
+                if (!AppGlobals.isLogin()) {
+                    startActivity(new Intent(this, AccountManagerActivity.class));
+                } else {
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                }
                 break;
         }
     }

@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+
 import com.byteshaft.homemade.MainActivity;
 import com.byteshaft.homemade.R;
 import com.byteshaft.homemade.utils.AppGlobals;
@@ -39,8 +41,13 @@ public class AccountManagerActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
         fragmentTransaction.replace(R.id.container, fragment, backStateName);
+        Log.i("TAg", "name: " + String.valueOf(fragment instanceof Login));
+        if (fragment instanceof Login) {
+
+        } else {
             fragmentTransaction.addToBackStack(backStateName);
-            fragmentTransaction.commit();
+        }
+        fragmentTransaction.commit();
 
     }
 
