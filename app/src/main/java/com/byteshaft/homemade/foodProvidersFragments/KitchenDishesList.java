@@ -25,6 +25,7 @@ import com.byteshaft.homemade.utils.AppGlobals;
 import com.byteshaft.homemade.utils.Helpers;
 import com.byteshaft.requests.HttpRequest;
 
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -59,6 +60,9 @@ public class KitchenDishesList extends Fragment implements AdapterView.OnItemCli
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBaseView = inflater.inflate(R.layout.fragment_kitchen_dishes_list, container, false);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(false);
+        MainActivity.getInstance().showHamburger();
         setHasOptionsMenu(true);
         mDishesListView = (ListView) mBaseView.findViewById(R.id.dish_list_view);
         dishDetailsArrayList = new ArrayList<>();
@@ -68,7 +72,6 @@ public class KitchenDishesList extends Fragment implements AdapterView.OnItemCli
         gettingDishes();
         mDishesListView.setOnItemClickListener(this);
         mDishesListView.setOnItemLongClickListener(this);
-
         return mBaseView;
     }
 
@@ -106,7 +109,7 @@ public class KitchenDishesList extends Fragment implements AdapterView.OnItemCli
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.add_dish_button:
-                MainActivity.getInstance().loadFragment(new AddDishDetails());
+                MainActivity.getInstance().loadFragmentWithBackStack(new AddDishDetails());
                 break;
         }
         return super.onOptionsItemSelected(item);

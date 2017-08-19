@@ -20,6 +20,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -81,16 +82,12 @@ public class AddDishDetails extends Fragment implements View.OnClickListener, Ht
     private String url;
     private int dishId;
     private int position = -1;
-
     private DishDetails dishDetails;
-
     private HttpRequest request;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(true);
         setHasOptionsMenu(false);
         mBaseView = inflater.inflate(R.layout.fragment_add_dish_details, container, false);
         mProfilePicture = (CircleImageView) mBaseView.findViewById(R.id.dish_image);
@@ -101,7 +98,6 @@ public class AddDishDetails extends Fragment implements View.OnClickListener, Ht
 
         mProfilePicture.setOnClickListener(this);
         mDoneButton.setOnClickListener(this);
-
         Bundle mBundle = getArguments();
         if (mBundle != null) {
             method = "PUT";
@@ -111,15 +107,24 @@ public class AddDishDetails extends Fragment implements View.OnClickListener, Ht
             mDishDescriptions.setText(mBundle.getString("description"));
             Helpers.getBitMap(mBundle.getString("image"), mProfilePicture);
             mDoneButton.setText(R.string.update_title);
+            ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Update Dish");
         }
         return mBaseView;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Update Dish");
-    }
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(true);
+//    }
+//
+//    @Override
+//    public void onPause() {
+//        super.onPause();
+//        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+//        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(false);
+//    }
 
     @Override
     public void onClick(View v) {
@@ -165,6 +170,15 @@ public class AddDishDetails extends Fragment implements View.OnClickListener, Ht
         return valid;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                getFragmentManager().popBackStack();
+                return true;
+            default:return super.onOptionsItemSelected(item);
+        }
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -379,8 +393,7 @@ public class AddDishDetails extends Fragment implements View.OnClickListener, Ht
                         getFragmentManager().popBackStack();
                         Helpers.showSnackBar(getView(), R.string.dish_update);
                     case HttpURLConnection.HTTP_CREATED:
-                        System.out.println(httpRequest.getResponseText() + "working ");
-                        MainActivity.getInstance().loadFragment(new KitchenDishesList());
+                        getFragmentManager().popBackStack();
                         Helpers.showSnackBar(getView(), R.string.dish_added);
                 }
         }
