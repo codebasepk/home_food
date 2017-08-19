@@ -248,7 +248,7 @@ public class KitchensListActivity extends AppCompatActivity implements AdapterVi
     public void onError(HttpRequest httpRequest, int readyState, short i1, Exception exception) {
         switch (readyState) {
             case HttpRequest.ERROR_CONNECTION_TIMED_OUT:
-                Helpers.showSnackBar(findViewById(android.R.id.content), "connection time out");
+                Helpers.showSnackBar(findViewById(android.R.id.content),  getString(R.string.connection_time_out));
                 break;
             case HttpRequest.ERROR_NETWORK_UNREACHABLE:
                 Helpers.showSnackBar(findViewById(android.R.id.content), exception.getLocalizedMessage());
@@ -302,7 +302,7 @@ public class KitchensListActivity extends AppCompatActivity implements AdapterVi
         protected void onPreExecute() {
             super.onPreExecute();
             System.out.println("task");
-            Helpers.showProgressDialog(KitchensListActivity.this, "Loading Kitchens...");
+            Helpers.showProgressDialog(KitchensListActivity.this, getString(R.string.loading_kitchens_dialog));
         }
 
         @Override
@@ -361,14 +361,14 @@ public class KitchensListActivity extends AppCompatActivity implements AdapterVi
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
             alertDialogBuilder.setTitle(getResources().getString(R.string.permission_dialog_title));
             alertDialogBuilder.setMessage(getResources().getString(R.string.permission_dialog_message))
-                    .setCancelable(false).setPositiveButton("Continue", new DialogInterface.OnClickListener() {
+                    .setCancelable(false).setPositiveButton(R.string.continue_button, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     dialog.dismiss();
                     ActivityCompat.requestPermissions(KitchensListActivity.this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
                             LOCATION_PERMISSION);
                 }
             });
-            alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            alertDialogBuilder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     dialogInterface.dismiss();

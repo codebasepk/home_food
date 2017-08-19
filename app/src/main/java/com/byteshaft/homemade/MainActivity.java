@@ -113,9 +113,9 @@ public class MainActivity extends AppCompatActivity
         else if (id == R.id.admin_logout) {
 
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-            alertDialogBuilder.setTitle("Confirmation");
-            alertDialogBuilder.setMessage("Do you really want to logout?")
-                    .setCancelable(false).setPositiveButton("Yes",
+            alertDialogBuilder.setTitle(R.string.confirmation_title);
+            alertDialogBuilder.setMessage(R.string.logout_dialog)
+                    .setCancelable(false).setPositiveButton(R.string.button_yes,
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             dialog.dismiss();
@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity
                             loadFragment(new Login());
                         }
                     });
-            alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            alertDialogBuilder.setNegativeButton(R.string.button_no, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     dialogInterface.dismiss();

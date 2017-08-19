@@ -84,7 +84,7 @@ public class KitchenDishesDetailsActivity extends AppCompatActivity implements
     public void onError(HttpRequest httpRequest, int readyState, short i1, Exception exception) {
         switch (readyState) {
             case HttpRequest.ERROR_CONNECTION_TIMED_OUT:
-                Helpers.showSnackBar(findViewById(android.R.id.content), "connection time out");
+                Helpers.showSnackBar(findViewById(android.R.id.content), getString(R.string.connection_time_out));
                 break;
             case HttpRequest.ERROR_NETWORK_UNREACHABLE:
                 Helpers.showSnackBar(findViewById(android.R.id.content), exception.getLocalizedMessage());

@@ -129,7 +129,7 @@ public class KitchenDishesList extends Fragment implements AdapterView.OnItemCli
     public void onError(HttpRequest httpRequest, int readyState, short i1, Exception exception) {
         switch (readyState) {
             case HttpRequest.ERROR_CONNECTION_TIMED_OUT:
-                Helpers.showSnackBar(getView(), "connection time out");
+                Helpers.showSnackBar(getView(), getString(R.string.connection_time_out));
                 break;
             case HttpRequest.ERROR_NETWORK_UNREACHABLE:
                 Helpers.showSnackBar(getView(), exception.getLocalizedMessage());
@@ -140,7 +140,7 @@ public class KitchenDishesList extends Fragment implements AdapterView.OnItemCli
     @Override
     public void onResume() {
         super.onResume();
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("All Dishes");
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.all_dishes);
         isLongPress = false;
         if (dishDetailsArrayList.size() > currentArraySize || updated) {
             dishDetailsAdapters.notifyDataSetChanged();
@@ -189,15 +189,15 @@ public class KitchenDishesList extends Fragment implements AdapterView.OnItemCli
         positionOfDelete = position;
         final DishDetails dishDetails = dishDetailsArrayList.get(position);
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
-        alertDialogBuilder.setTitle("Delete");
-        alertDialogBuilder.setMessage("Do you want to delete this dish?")
-                .setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        alertDialogBuilder.setTitle(R.string.delete_title);
+        alertDialogBuilder.setMessage(R.string.delete_dish)
+                .setCancelable(false).setPositiveButton(R.string.button_yes, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 deleteDish(dishDetails.getId());
                 dialog.dismiss();
             }
         });
-        alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+        alertDialogBuilder.setNegativeButton(R.string.button_no, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();

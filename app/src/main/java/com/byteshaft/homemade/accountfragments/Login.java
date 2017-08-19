@@ -63,13 +63,13 @@ public class Login extends Fragment implements View.OnClickListener, HttpRequest
         System.out.println(mPasswordString);
 
         if (mEmailString.trim().isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(mEmailString).matches()) {
-            mEmail.setError("please provide a valid email");
+            mEmail.setError(getString(R.string.emai_error));
             valid = false;
         } else {
             mEmail.setError(null);
         }
         if (mPasswordString.isEmpty() || mPassword.length() < 4) {
-            mPassword.setError("Enter minimum 4 alphanumeric characters");
+            mPassword.setError(getString(R.string.password_error));
             valid = false;
         } else {
             mPassword.setError(null);
@@ -83,7 +83,7 @@ public class Login extends Fragment implements View.OnClickListener, HttpRequest
         request.setOnErrorListener(this);
         request.open("POST", String.format("%slogin", AppGlobals.BASE_URL));
         request.send(getUserLoginData(email, password));
-        Helpers.showProgressDialog(getActivity(), "Logging In..");
+        Helpers.showProgressDialog(getActivity(), getString(R.string.login_progress_dialog));
     }
 
     private String getUserLoginData(String email, String password) {
@@ -189,7 +189,7 @@ public class Login extends Fragment implements View.OnClickListener, HttpRequest
         Helpers.dismissProgressDialog();
         switch (readyState) {
             case HttpRequest.ERROR_CONNECTION_TIMED_OUT:
-                Helpers.showSnackBar(getView(), "connection time out");
+                Helpers.showSnackBar(getView(), getString(R.string.connection_time_out));
                 break;
             case HttpRequest.ERROR_NETWORK_UNREACHABLE:
                 Helpers.showSnackBar(getView(), exception.getLocalizedMessage());
