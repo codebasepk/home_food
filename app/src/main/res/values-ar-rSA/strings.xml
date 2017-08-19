@@ -152,4 +152,5 @@
     <string name="button_no">لا</string>
     <string name="confirmation_title">التأكيد</string>
     <string name="logout_dialog">هل تريد حقا الخروج؟</string>
+    <string name="update_dish">تحديث طبق</string>
 </resources>

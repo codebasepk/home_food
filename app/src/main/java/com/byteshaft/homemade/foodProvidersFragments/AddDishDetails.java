@@ -107,7 +107,7 @@ public class AddDishDetails extends Fragment implements View.OnClickListener, Ht
             mDishDescriptions.setText(mBundle.getString("description"));
             Helpers.getBitMap(mBundle.getString("image"), mProfilePicture);
             mDoneButton.setText(R.string.update_title);
-            ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Update Dish");
+            ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.update_dish);
         }
         return mBaseView;
     }
