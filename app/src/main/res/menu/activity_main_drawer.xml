@@ -5,20 +5,20 @@
         <item
             android:id="@+id/add_dish"
             android:icon="@drawable/menu"
-            android:title="Add Dish" />
+            android:title="@string/add_dish_navigation" />
 
         <item
             android:id="@+id/update_profile"
             android:icon="@drawable/edit_user"
-            android:title="Update Profile" />
+            android:title="@string/update_profile_navigation" />
         <item
             android:id="@+id/change_password"
             android:icon="@drawable/change_password"
-            android:title="Change Password" />
+            android:title="@string/change_password" />
 
         <item
             android:id="@+id/admin_logout"
             android:icon="@drawable/logout"
-            android:title="Logout" />
+            android:title="@string/logout" />
     </group>
 </menu>

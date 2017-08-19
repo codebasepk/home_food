@@ -157,13 +157,13 @@ public class SignUp extends Fragment implements View.OnClickListener, GoogleApiC
         mDeliverySwitch.setChecked(AppGlobals.getSwitchValue());
 
         mWeekDays = new ArrayList<>();
-        mWeekDays.add("Mon");
-        mWeekDays.add("Tue");
-        mWeekDays.add("Wed");
-        mWeekDays.add("Thu");
-        mWeekDays.add("Fri");
-        mWeekDays.add("Sat");
-        mWeekDays.add("Sun");
+        mWeekDays.add(getString(R.string.monday));
+        mWeekDays.add(getString(R.string.tuesday));
+        mWeekDays.add(getString(R.string.wednesday));
+        mWeekDays.add(getString(R.string.thursday));
+        mWeekDays.add(getString(R.string.friday));
+        mWeekDays.add(getString(R.string.saturday));
+        mWeekDays.add(getString(R.string.sunday));
         mWeekDaysSpinner.setItems(mWeekDays);
         mWeekDaysSpinner.setSelection(new ArrayList<String>());
         mWeekDaysSpinner.setListener(new MultiSelectionSpinner.OnMultipleItemsSelectedListener() {
@@ -174,7 +174,6 @@ public class SignUp extends Fragment implements View.OnClickListener, GoogleApiC
 
             @Override
             public void selectedStrings(List<String> strings) {
-                System.out.println(strings + "values");
                 savedWorkingDyas = strings;
 
 
@@ -206,14 +205,14 @@ public class SignUp extends Fragment implements View.OnClickListener, GoogleApiC
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
                     alertDialogBuilder.setTitle(getResources().getString(R.string.permission_dialog_title));
                     alertDialogBuilder.setMessage(getResources().getString(R.string.permission_dialog_message))
-                            .setCancelable(false).setPositiveButton("Continue", new DialogInterface.OnClickListener() {
+                            .setCancelable(false).setPositiveButton(R.string.button_continue, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             dialog.dismiss();
                             requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
                                     LOCATION_PERMISSION);
                         }
                     });
-                    alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    alertDialogBuilder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             dialogInterface.dismiss();
@@ -296,7 +295,7 @@ public class SignUp extends Fragment implements View.OnClickListener, GoogleApiC
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                             if (shouldShowRequestPermissionRationale(Manifest.permission.CAMERA) ||
                                     shouldShowRequestPermissionRationale(Manifest.permission.READ_EXTERNAL_STORAGE)) {
-                                showDialogOK("Camera and Storage Permission required for this app",
+                                showDialogOK(getString(R.string.camera_storage_permission),
                                         new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
@@ -314,7 +313,7 @@ public class SignUp extends Fragment implements View.OnClickListener, GoogleApiC
                             //permission is denied (and never ask again is  checked)
                             //shouldShowRequestPermissionRationale will return false
                             else {
-                                Toast.makeText(getActivity(), "Go to settings and enable permissions", Toast.LENGTH_LONG)
+                                Toast.makeText(getActivity(), R.string.go_settings_permission, Toast.LENGTH_LONG)
                                         .show();
                                 //                            //proceed with logic by disabling the related features or quit the
                                 Helpers.showSnackBar(getView(), R.string.permission_denied);
@@ -331,8 +330,8 @@ public class SignUp extends Fragment implements View.OnClickListener, GoogleApiC
     private void showDialogOK(String message, DialogInterface.OnClickListener okListener) {
         new AlertDialog.Builder(getActivity())
                 .setMessage(message)
-                .setPositiveButton("OK", okListener)
-                .setNegativeButton("Cancel", okListener)
+                .setPositiveButton(R.string.ok_button, okListener)
+                .setNegativeButton(R.string.cancel, okListener)
                 .create()
                 .show();
     }
@@ -361,25 +360,25 @@ public class SignUp extends Fragment implements View.OnClickListener, GoogleApiC
     }
 
     private void selectImage() {
-        final CharSequence[] items = {"Take Photo", "Choose from Library", "Cancel"};
+        final CharSequence[] items = {getString(R.string.take_photo), getString(R.string.choose_library), getString(R.string.cancel_photo)};
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Select Photo");
+        builder.setTitle(R.string.select_photo);
         builder.setItems(items, new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int item) {
-                if (items[item].equals("Take Photo")) {
+                if (items[item].equals(getString(R.string.take_photo))) {
                     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                     startActivityForResult(intent, REQUEST_CAMERA);
-                } else if (items[item].equals("Choose from Library")) {
+                } else if (items[item].equals(getString(R.string.choose_library))) {
                     Intent intent = new Intent(
                             Intent.ACTION_PICK,
                             MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     intent.setType("image/*");
                     startActivityForResult(
-                            Intent.createChooser(intent, "Select File"),
+                            Intent.createChooser(intent, getString(R.string.select_file)),
                             SELECT_FILE);
-                } else if (items[item].equals("Cancel")) {
+                } else if (items[item].equals(getString(R.string.photo_cancel))) {
                     dialog.dismiss();
                 }
 
@@ -540,13 +539,13 @@ public class SignUp extends Fragment implements View.OnClickListener, GoogleApiC
         mAddressString = mAddress.getText().toString();
 
         if (mEmailAddressString.trim().isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(mEmailAddressString).matches()) {
-            mEmail.setError("please provide a valid email");
+            mEmail.setError(getString(R.string.valid_email));
             valid = false;
         } else {
             mEmail.setError(null);
         }
         if (mKitchenNameString.trim().isEmpty()) {
-            mKitchenName.setError("please provide restaurant name");
+            mKitchenName.setError(getString(R.string.restaurant_name));
             valid = false;
         } else {
             mKitchenName.setError(null);
@@ -564,14 +563,14 @@ public class SignUp extends Fragment implements View.OnClickListener, GoogleApiC
             mAddress.setError(null);
         }
         if (mPasswordString.trim().isEmpty() || mPasswordString.length() < 4) {
-            mPassword.setError("enter at least 4 characters");
+            mPassword.setError(getString(R.string.password_characters_four));
             valid = false;
         } else {
             mPassword.setError(null);
         }
         if (mVerifyPasswordString.trim().isEmpty() || mVerifyPasswordString.length() < 4 ||
                 !mVerifyPasswordString.equals(mPasswordString)) {
-            mVerifyPassword.setError("password does not match");
+            mVerifyPassword.setError(getString(R.string.password_does_not_match));
             valid = false;
         } else {
             mVerifyPassword.setError(null);
@@ -603,7 +602,7 @@ public class SignUp extends Fragment implements View.OnClickListener, GoogleApiC
                 }
             }
         }, hour, minute, false);
-        mTimePicker.setTitle("Select Time");
+        mTimePicker.setTitle(getString(R.string.select_time));
         mTimePicker.show();
 
     }
@@ -631,7 +630,7 @@ public class SignUp extends Fragment implements View.OnClickListener, GoogleApiC
                                 AppGlobals.alertDialog(getActivity(), getString(R.string.register_failed), getString(R.string.check_password));
                                 break;
                             case HttpURLConnection.HTTP_CREATED:
-                                Toast.makeText(getActivity(), "Activation code has been sent to you! Please check your Email", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), R.string.activation_code_send_message, Toast.LENGTH_SHORT).show();
                                 System.out.println(request.getResponseText() + "working ");
                                 try {
                                     JSONObject jsonObject = new JSONObject(request.getResponseText());
@@ -680,7 +679,7 @@ public class SignUp extends Fragment implements View.OnClickListener, GoogleApiC
                 Helpers.dismissProgressDialog();
                 switch (readyState) {
                     case HttpRequest.ERROR_CONNECTION_TIMED_OUT:
-                        Helpers.showSnackBar(getView(), "connection time out");
+                        Helpers.showSnackBar(getView(),  getString(R.string.connection_time_out));
                         break;
                     case HttpRequest.ERROR_NETWORK_UNREACHABLE:
                         Helpers.showSnackBar(getView(), exception.getLocalizedMessage());
@@ -692,7 +691,7 @@ public class SignUp extends Fragment implements View.OnClickListener, GoogleApiC
         request.open("POST", String.format("%sregister", AppGlobals.BASE_URL));
         request.send(getRegisterData(email, kitchenName, password, contactNumber, location,
                 kitchenPhoto, workingDays, openingTime, closingTime, deliveryStatus, deliveryTime));
-        Helpers.showProgressDialog(getActivity(), "Registering Kitchen...");
+        Helpers.showProgressDialog(getActivity(), getString(R.string.registering_kitchen));
     }
 
     private FormData getRegisterData(String email, String kitchenName, String password,

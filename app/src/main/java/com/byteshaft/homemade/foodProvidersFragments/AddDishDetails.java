@@ -110,7 +110,7 @@ public class AddDishDetails extends Fragment implements View.OnClickListener, Ht
             mDishPrice.setText(mBundle.getString("price"));
             mDishDescriptions.setText(mBundle.getString("description"));
             Helpers.getBitMap(mBundle.getString("image"), mProfilePicture);
-            mDoneButton.setText("Update");
+            mDoneButton.setText(R.string.update_title);
         }
         return mBaseView;
     }
@@ -145,19 +145,19 @@ public class AddDishDetails extends Fragment implements View.OnClickListener, Ht
 
 
         if (mDishNameString.trim().isEmpty()) {
-            mDishName.setError("please provide dish name");
+            mDishName.setError(getString(R.string.provide_dish_name));
             valid = false;
         } else {
             mDishName.setError(null);
         }
         if (mDishPriceString.trim().isEmpty()) {
-            mDishPrice.setError("please provide dish price");
+            mDishPrice.setError(getString(R.string.provide_dish_price));
             valid = false;
         } else {
             mDishPrice.setError(null);
         }
         if (mDishDescriptionsString.trim().isEmpty()) {
-            mDishDescriptions.setError("please dish descriptions max 120 word");
+            mDishDescriptions.setError(getString(R.string.provide_dish_description));
             valid = false;
         } else {
             mDishDescriptions.setError(null);
@@ -192,7 +192,7 @@ public class AddDishDetails extends Fragment implements View.OnClickListener, Ht
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                             if (shouldShowRequestPermissionRationale(Manifest.permission.CAMERA) ||
                                     shouldShowRequestPermissionRationale(Manifest.permission.READ_EXTERNAL_STORAGE)) {
-                                showDialogOK("Camera and Storage Permission required for this app",
+                                showDialogOK(getString(R.string.camera_storage_permission),
                                         new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
@@ -210,7 +210,7 @@ public class AddDishDetails extends Fragment implements View.OnClickListener, Ht
                             //permission is denied (and never ask again is  checked)
                             //shouldShowRequestPermissionRationale will return false
                             else {
-                                Toast.makeText(getActivity(), "Go to settings and enable permissions", Toast.LENGTH_LONG)
+                                Toast.makeText(getActivity(), R.string.go_settings_permission, Toast.LENGTH_LONG)
                                         .show();
                                 //                            //proceed with logic by disabling the related features or quit the
                                 Helpers.showSnackBar(getView(), R.string.permission_denied);
@@ -227,8 +227,8 @@ public class AddDishDetails extends Fragment implements View.OnClickListener, Ht
     private void showDialogOK(String message, DialogInterface.OnClickListener okListener) {
         new AlertDialog.Builder(getActivity())
                 .setMessage(message)
-                .setPositiveButton("OK", okListener)
-                .setNegativeButton("Cancel", okListener)
+                .setPositiveButton(R.string.ok_button, okListener)
+                .setNegativeButton(R.string.cancel, okListener)
                 .create()
                 .show();
     }
@@ -257,25 +257,25 @@ public class AddDishDetails extends Fragment implements View.OnClickListener, Ht
     }
 
     private void selectImage() {
-        final CharSequence[] items = {"Take Photo", "Choose from Library", "Cancel"};
+        final CharSequence[] items = {getString(R.string.take_photo), getString(R.string.choose_library), getString(R.string.cancel_photo)};
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Select Photo");
+        builder.setTitle(R.string.select_photo);
         builder.setItems(items, new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int item) {
-                if (items[item].equals("Take Photo")) {
+                if (items[item].equals(getString(R.string.take_photo))) {
                     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                     startActivityForResult(intent, REQUEST_CAMERA);
-                } else if (items[item].equals("Choose from Library")) {
+                } else if (items[item].equals(getString(R.string.choose_library))) {
                     Intent intent = new Intent(
                             Intent.ACTION_PICK,
                             MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     intent.setType("image/*");
                     startActivityForResult(
-                            Intent.createChooser(intent, "Select File"),
+                            Intent.createChooser(intent, getString(R.string.select_file)),
                             SELECT_FILE);
-                } else if (items[item].equals("Cancel")) {
+                } else if (items[item].equals(getString(R.string.photo_cancel))) {
                     dialog.dismiss();
                 }
 
@@ -330,11 +330,11 @@ public class AddDishDetails extends Fragment implements View.OnClickListener, Ht
         HttpRequest request = new HttpRequest(getActivity());
         request.setOnReadyStateChangeListener(this);
         request.setOnErrorListener(this);
-        String dialogtext = "Adding Dish...";
+        String dialogtext = getString(R.string.adding_dish);
         if (method.equals("POST")) {
             url = String.format("%sdishes/", AppGlobals.BASE_URL);
         } else {
-            dialogtext = "Updating...";
+            dialogtext = getString(R.string.updating_message);
             url = String.format("%sdishes/%s/", AppGlobals.BASE_URL, dishId);
         }
         request.open(method, url);
@@ -360,7 +360,7 @@ public class AddDishDetails extends Fragment implements View.OnClickListener, Ht
     public void onError(HttpRequest httpRequest, int readyState, short i1, Exception exception) {
         switch (readyState) {
             case HttpRequest.ERROR_CONNECTION_TIMED_OUT:
-                Helpers.showSnackBar(getView(), "connection time out");
+                Helpers.showSnackBar(getView(), getString(R.string.connection_time_out));
                 break;
             case HttpRequest.ERROR_NETWORK_UNREACHABLE:
                 Helpers.showSnackBar(getView(), exception.getLocalizedMessage());

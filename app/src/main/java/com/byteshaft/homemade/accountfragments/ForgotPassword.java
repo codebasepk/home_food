@@ -52,7 +52,7 @@ public class ForgotPassword extends Fragment implements View.OnClickListener, Ht
         System.out.println(mEmailString);
 
         if (mEmailString.trim().isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(mEmailString).matches()) {
-            mEmail.setError("please provide a valid email");
+            mEmail.setError(getString(R.string.email_error));
             valid = false;
         } else {
             mEmail.setError(null);
@@ -78,13 +78,13 @@ public class ForgotPassword extends Fragment implements View.OnClickListener, Ht
                 Helpers.dismissProgressDialog();
                 switch (request.getStatus()) {
                     case HttpRequest.ERROR_NETWORK_UNREACHABLE:
-                        AppGlobals.alertDialog(getActivity(), "Recovery Failed!", "please check your internet connection");
+                        AppGlobals.alertDialog(getActivity(), getString(R.string.recovery_failed), getString(R.string.check_internet));
                         break;
                     case HttpURLConnection.HTTP_NOT_FOUND:
-                        AppGlobals.alertDialog(getActivity(), "Recovery Failed!", "provide a valid EmailAddress");
+                        AppGlobals.alertDialog(getActivity(), getString(R.string.recovery_failed), getString(R.string.valid_email));
                         break;
                     case HttpURLConnection.HTTP_OK:
-                        Toast.makeText(getActivity(), "Please check your Email for new password", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), R.string.recovery_message, Toast.LENGTH_LONG).show();
                         AccountManagerActivity.getInstance().loadFragment(new ResetPassword());
                 }
         }
@@ -96,7 +96,7 @@ public class ForgotPassword extends Fragment implements View.OnClickListener, Ht
         Helpers.dismissProgressDialog();
         switch (readyState) {
             case HttpRequest.ERROR_CONNECTION_TIMED_OUT:
-                Helpers.showSnackBar(getView(), "connection time out");
+                Helpers.showSnackBar(getView(), getString(R.string.connection_time_out));
                 break;
             case HttpRequest.ERROR_NETWORK_UNREACHABLE:
                 Helpers.showSnackBar(getView(), exception.getLocalizedMessage());
@@ -111,7 +111,7 @@ public class ForgotPassword extends Fragment implements View.OnClickListener, Ht
         request.setOnErrorListener(this);
         request.open("POST", String.format("%sforgot-password", AppGlobals.BASE_URL));
         request.send(getUserPassword(email));
-        Helpers.showProgressDialog(getActivity(), "Sending Recovery Mail");
+        Helpers.showProgressDialog(getActivity(), getString(R.string.recovery_email));
     }
 
 

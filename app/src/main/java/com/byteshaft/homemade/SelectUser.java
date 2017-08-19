@@ -52,14 +52,14 @@ public class SelectUser extends AppCompatActivity implements View.OnClickListene
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
             alertDialogBuilder.setTitle(getResources().getString(R.string.permission_dialog_title));
             alertDialogBuilder.setMessage(getResources().getString(R.string.permission_dialog_message))
-                    .setCancelable(false).setPositiveButton("Continue", new DialogInterface.OnClickListener() {
+                    .setCancelable(false).setPositiveButton(R.string.continue_button, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     dialog.dismiss();
                     ActivityCompat.requestPermissions(SelectUser.this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
                             LOCATION_PERMISSION);
                 }
             });
-            alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            alertDialogBuilder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     dialogInterface.dismiss();
@@ -89,14 +89,14 @@ public class SelectUser extends AppCompatActivity implements View.OnClickListene
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
                     alertDialogBuilder.setTitle(getResources().getString(R.string.permission_dialog_title));
                     alertDialogBuilder.setMessage(getResources().getString(R.string.permission_dialog_message))
-                            .setCancelable(false).setPositiveButton("Continue", new DialogInterface.OnClickListener() {
+                            .setCancelable(false).setPositiveButton(R.string.continue_button, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             dialog.dismiss();
                             ActivityCompat.requestPermissions(SelectUser.this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
                                     LOCATION_PERMISSION);
                         }
                     });
-                    alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    alertDialogBuilder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             dialogInterface.dismiss();

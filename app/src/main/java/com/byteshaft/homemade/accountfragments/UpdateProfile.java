@@ -149,13 +149,13 @@ public class UpdateProfile extends Fragment implements View.OnClickListener, Goo
         mDeliverySwitch.setChecked(AppGlobals.getSwitchValue());
 
         mWeekDays = new ArrayList<>();
-        mWeekDays.add("Mon");
-        mWeekDays.add("Tue");
-        mWeekDays.add("Wed");
-        mWeekDays.add("Thu");
-        mWeekDays.add("Fri");
-        mWeekDays.add("Sat");
-        mWeekDays.add("Sun");
+        mWeekDays.add(getString(R.string.monday));
+        mWeekDays.add(getString(R.string.tuesday));
+        mWeekDays.add(getString(R.string.wednesday));
+        mWeekDays.add(getString(R.string.thursday));
+        mWeekDays.add(getString(R.string.friday));
+        mWeekDays.add(getString(R.string.saturday));
+        mWeekDays.add(getString(R.string.sunday));
         mWeekDaysSpinner.setItems(mWeekDays);
         mWeekDaysSpinner.setSelection(new ArrayList<String>());
         mWeekDaysSpinner.setListener(new MultiSelectionSpinner.OnMultipleItemsSelectedListener() {
@@ -220,14 +220,14 @@ public class UpdateProfile extends Fragment implements View.OnClickListener, Goo
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
                     alertDialogBuilder.setTitle(getResources().getString(R.string.permission_dialog_title));
                     alertDialogBuilder.setMessage(getResources().getString(R.string.permission_dialog_message))
-                            .setCancelable(false).setPositiveButton("Continue", new DialogInterface.OnClickListener() {
+                            .setCancelable(false).setPositiveButton(R.string.continue_button, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             dialog.dismiss();
                             requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
                                     LOCATION_PERMISSION);
                         }
                     });
-                    alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    alertDialogBuilder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             dialogInterface.dismiss();
@@ -310,7 +310,7 @@ public class UpdateProfile extends Fragment implements View.OnClickListener, Goo
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                             if (shouldShowRequestPermissionRationale(Manifest.permission.CAMERA) ||
                                     shouldShowRequestPermissionRationale(Manifest.permission.READ_EXTERNAL_STORAGE)) {
-                                showDialogOK("Camera and Storage Permission required for this app",
+                                showDialogOK(getString(R.string.camera_storage_permission),
                                         new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
@@ -328,7 +328,7 @@ public class UpdateProfile extends Fragment implements View.OnClickListener, Goo
                             //permission is denied (and never ask again is  checked)
                             //shouldShowRequestPermissionRationale will return false
                             else {
-                                Toast.makeText(getActivity(), "Go to settings and enable permissions", Toast.LENGTH_LONG)
+                                Toast.makeText(getActivity(), R.string.go_settings_permission, Toast.LENGTH_LONG)
                                         .show();
                                 //                            //proceed with logic by disabling the related features or quit the
                                 Helpers.showSnackBar(getView(), R.string.permission_denied);
@@ -345,8 +345,8 @@ public class UpdateProfile extends Fragment implements View.OnClickListener, Goo
     private void showDialogOK(String message, DialogInterface.OnClickListener okListener) {
         new AlertDialog.Builder(getActivity())
                 .setMessage(message)
-                .setPositiveButton("OK", okListener)
-                .setNegativeButton("Cancel", okListener)
+                .setPositiveButton(R.string.ok_button, okListener)
+                .setNegativeButton(R.string.cancel, okListener)
                 .create()
                 .show();
     }
@@ -375,25 +375,25 @@ public class UpdateProfile extends Fragment implements View.OnClickListener, Goo
     }
 
     private void selectImage() {
-        final CharSequence[] items = {"Take Photo", "Choose from Library", "Cancel"};
+        final CharSequence[] items = {getString(R.string.take_photo), getString(R.string.choose_library), getString(R.string.cancel_photo)};
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Select Photo");
+        builder.setTitle(R.string.select_photo);
         builder.setItems(items, new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int item) {
-                if (items[item].equals("Take Photo")) {
+                if (items[item].equals(getString(R.string.take_photo))) {
                     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                     startActivityForResult(intent, REQUEST_CAMERA);
-                } else if (items[item].equals("Choose from Library")) {
+                } else if (items[item].equals(getString(R.string.choose_library))) {
                     Intent intent = new Intent(
                             Intent.ACTION_PICK,
                             MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     intent.setType("image/*");
                     startActivityForResult(
-                            Intent.createChooser(intent, "Select File"),
+                            Intent.createChooser(intent, getString(R.string.select_file)),
                             SELECT_FILE);
-                } else if (items[item].equals("Cancel")) {
+                } else if (items[item].equals(getString(R.string.photo_cancel))) {
                     dialog.dismiss();
                 }
 
@@ -567,7 +567,7 @@ public class UpdateProfile extends Fragment implements View.OnClickListener, Goo
                 }
             }
         }, hour, minute, false);
-        mTimePicker.setTitle("Select Time");
+        mTimePicker.setTitle(getString(R.string.select_time));
         mTimePicker.show();
 
     }
@@ -590,7 +590,7 @@ public class UpdateProfile extends Fragment implements View.OnClickListener, Goo
                             case HttpURLConnection.HTTP_BAD_REQUEST:
                                 break;
                             case HttpURLConnection.HTTP_OK:
-                                Toast.makeText(getActivity(), "Activation code has been sent to you! Please check your Email", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), getString(R.string.activation_code_send_message), Toast.LENGTH_SHORT).show();
                                 System.out.println(request.getResponseText() + "working ");
                                 try {
                                     JSONObject jsonObject = new JSONObject(request.getResponseText());
@@ -640,7 +640,7 @@ public class UpdateProfile extends Fragment implements View.OnClickListener, Goo
                 Helpers.dismissProgressDialog();
                 switch (readyState) {
                     case HttpRequest.ERROR_CONNECTION_TIMED_OUT:
-                        Helpers.showSnackBar(getView(), "connection time out");
+                        Helpers.showSnackBar(getView(), getString(R.string.connection_time_out));
                         break;
                     case HttpRequest.ERROR_NETWORK_UNREACHABLE:
                         Helpers.showSnackBar(getView(), exception.getLocalizedMessage());
@@ -655,7 +655,7 @@ public class UpdateProfile extends Fragment implements View.OnClickListener, Goo
                 AppGlobals.getStringFromSharedPreferences(AppGlobals.KEY_TOKEN));
         request.send(getRegisterData(kitchenName, contactNumber, location,
                 kitchenPhoto, workingDays, openingTime, closingTime, deliveryStatus, deliveryTime));
-        Helpers.showProgressDialog(getActivity(), "updating profile...");
+        Helpers.showProgressDialog(getActivity(), getString(R.string.update_profile_message));
     }
 
     private FormData getRegisterData(String kitchenName,

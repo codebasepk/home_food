@@ -71,19 +71,19 @@ public class ResetPassword extends Fragment implements View.OnClickListener,
         mEmailString = mEmail.getText().toString();
 
         if (mNewPasswordString.trim().isEmpty() || mNewPasswordString.length() < 4) {
-            mNewPassword.setError("enter at least 3 characters");
+            mNewPassword.setError(getString(R.string.password_character));
             valid = false;
         } else {
             mNewPassword.setError(null);
         }
         if (mOldPasswordString.trim().isEmpty() || mOldPasswordString.length() < 4) {
-            mOldPassword.setError("enter at least 3 characters");
+            mOldPassword.setError(getString(R.string.password_character));
             valid = false;
         } else {
             mOldPassword.setError(null);
         }
         if (mEmailString.trim().isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(mEmailString).matches()) {
-            mEmail.setError("please provide a valid email");
+            mEmail.setError(getString(R.string.valid_email));
             valid = false;
         } else {
             mEmail.setError(null);
@@ -97,7 +97,7 @@ public class ResetPassword extends Fragment implements View.OnClickListener,
         request.setOnErrorListener(this);
         request.open("POST", String.format("%schange-password", AppGlobals.BASE_URL));
         request.send(getUserChangePassword(email, emailotp, newpassword));
-        Helpers.showProgressDialog(getActivity(), "Resting your password");
+        Helpers.showProgressDialog(getActivity(), getString(R.string.resting_password));
 
     }
 
@@ -121,15 +121,15 @@ public class ResetPassword extends Fragment implements View.OnClickListener,
                 Helpers.dismissProgressDialog();
                 switch (request.getStatus()) {
                     case HttpRequest.ERROR_NETWORK_UNREACHABLE:
-                        AppGlobals.alertDialog(getActivity(), "Resetting Failed!", "please check your internet connection");
+                        AppGlobals.alertDialog(getActivity(), getString(R.string.resetting_failed),  getString(R.string.check_internet));
                         break;
                     case HttpURLConnection.HTTP_BAD_REQUEST:
-                        AppGlobals.alertDialog(getActivity(), "Resetting Failed!", "old Password is wrong");
+                        AppGlobals.alertDialog(getActivity(), getString(R.string.resetting_failed), getString(R.string.old_password));
                         break;
                     case HttpURLConnection.HTTP_OK:
                         System.out.println(request.getResponseText() + "working ");
                         AccountManagerActivity.getInstance().loadFragment(new Login());
-                        Toast.makeText(getActivity(), "Your password successfully changed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), R.string.your_password_changed, Toast.LENGTH_SHORT).show();
                 }
         }
     }
@@ -139,7 +139,7 @@ public class ResetPassword extends Fragment implements View.OnClickListener,
         Helpers.dismissProgressDialog();
         switch (readyState) {
             case HttpRequest.ERROR_CONNECTION_TIMED_OUT:
-                Helpers.showSnackBar(getView(), "connection time out");
+                Helpers.showSnackBar(getView(),  getString(R.string.connection_time_out));
                 break;
             case HttpRequest.ERROR_NETWORK_UNREACHABLE:
                 Helpers.showSnackBar(getView(), exception.getLocalizedMessage());
