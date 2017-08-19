@@ -152,4 +152,5 @@
     <string name="button_no">No</string>
     <string name="confirmation_title">Confirmation</string>
     <string name="logout_dialog">Do you really want to logout?</string>
+    <string name="update_dish">Update Dish</string>
 </resources>
