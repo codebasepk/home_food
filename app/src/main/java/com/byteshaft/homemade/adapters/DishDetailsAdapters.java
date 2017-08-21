@@ -49,7 +49,6 @@ public class DishDetailsAdapters extends ArrayAdapter<String> {
             viewHolder.mDishPrice = (TextView) convertView.findViewById(R.id.dish_price);
             viewHolder.mDishImage = (CircleImageView) convertView.findViewById(R.id.dish_image);
             convertView.setTag(viewHolder);
-
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
           }
@@ -69,10 +68,6 @@ public class DishDetailsAdapters extends ArrayAdapter<String> {
 
         return convertView;
     }
-
-
-
-
 
     @Override
     public int getCount() {
