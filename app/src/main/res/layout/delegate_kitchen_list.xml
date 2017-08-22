@@ -33,7 +33,7 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/kitchen_image"
-                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_centerVertical="true"
@@ -44,7 +44,7 @@
 
             <View
                 android:id="@+id/dish_view"
-                android:layout_toRightOf="@+id/image_layout"
+                android:layout_toLeftOf="@+id/image_layout"
                 android:background="#000"
                 android:layout_width="1dp"
                 android:layout_margin="10dp"
@@ -52,7 +52,7 @@
 
             <RelativeLayout
                 android:id="@+id/layout_kitchen_name"
-                android:layout_toRightOf="@+id/dish_view"
+                android:layout_toLeftOf="@+id/dish_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -69,7 +69,7 @@
                     android:id="@+id/kitchen_name"
                     android:layout_marginTop="15dp"
                     android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/kitchen_name_title"
+                    android:layout_toLeftOf="@+id/kitchen_name_title"
                     android:text="Name"
                     android:textSize="13sp"
                     android:textColor="#000"
@@ -81,7 +81,7 @@
                 android:id="@+id/layout_delivery"
                 android:layout_marginTop="5dp"
                 android:layout_below="@+id/layout_kitchen_name"
-                android:layout_toRightOf="@+id/dish_view"
+                android:layout_toLeftOf="@+id/dish_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -95,7 +95,7 @@
 
                 <TextView
                     android:id="@+id/delivery_status"
-                    android:layout_toRightOf="@+id/delivery_status_title"
+                    android:layout_toLeftOf="@+id/delivery_status_title"
                     android:text=" Yes"
                     android:textColor="#000"
                     android:layout_width="match_parent"
@@ -106,7 +106,7 @@
                 android:id="@+id/layout_location"
                 android:layout_marginTop="5dp"
                 android:layout_below="@+id/layout_delivery"
-                android:layout_toRightOf="@+id/dish_view"
+                android:layout_toLeftOf="@+id/dish_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -120,7 +120,7 @@
 
                 <TextView
                     android:id="@+id/address"
-                    android:layout_toRightOf="@+id/location_title"
+                    android:layout_toLeftOf="@+id/location_title"
                     android:text=" "
                     android:textColor="#000"
                     android:layout_width="match_parent"
@@ -149,7 +149,7 @@
             <RelativeLayout
                 android:id="@+id/layout_opening_time"
                 android:layout_weight="1.0"
-                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -163,7 +163,7 @@
 
                 <TextView
                     android:id="@+id/opening_time"
-                    android:layout_toRightOf="@+id/opening_time_title"
+                    android:layout_toLeftOf="@+id/opening_time_title"
                     android:text=" 8:00 am"
                     android:textColor="#000"
                     android:layout_width="match_parent"
@@ -173,7 +173,6 @@
             <RelativeLayout
                 android:id="@+id/layout_closing_time"
                 android:layout_weight="1.0"
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -187,7 +186,7 @@
 
                 <TextView
                     android:id="@+id/closing_time"
-                    android:layout_toRightOf="@+id/closing_time_title"
+                    android:layout_toLeftOf="@+id/closing_time_title"
                     android:text=" 5:00 pm"
                     android:textColor="#000"
                     android:layout_width="match_parent"
@@ -221,7 +220,7 @@
 
                 <TextView
                     android:id="@+id/order_time"
-                    android:layout_toRightOf="@+id/order_time_title"
+                    android:layout_toLeftOf="@+id/order_time_title"
                     android:text=" 2h"
                     android:textColor="#000"
                     android:layout_width="match_parent"
@@ -243,7 +242,7 @@
 
                     <TextView
                         android:id="@+id/contact_number"
-                        android:layout_toRightOf="@+id/contact_title"
+                        android:layout_toLeftOf="@+id/contact_title"
                         android:text=" "
                         android:textColor="#000"
                         android:layout_width="match_parent"
@@ -253,7 +252,7 @@
 
             <RelativeLayout
                 android:id="@+id/layout_working_days"
-                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:paddingBottom="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_below="@+id/order_finish_layout"
@@ -270,7 +269,7 @@
 
                 <TextView
                     android:id="@+id/working_days"
-                    android:layout_toRightOf="@+id/working_days_title"
+                    android:layout_toLeftOf="@+id/working_days_title"
                     android:text="     Mon, Tue, Wed, Thu, Fri, Sat, Sun"
                     android:textColor="#000"
                     android:layout_width="match_parent"

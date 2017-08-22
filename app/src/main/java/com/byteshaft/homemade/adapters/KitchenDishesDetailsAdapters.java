@@ -44,11 +44,8 @@ public class KitchenDishesDetailsAdapters extends BaseAdapter {
             viewHolder.mDishImage = (CircleImageView) convertView.findViewById(R.id.dish_image);
             viewHolder.mDishDescriptions = (TextView) convertView.findViewById(R.id.dish_description);
             convertView.setTag(viewHolder);
-
         } else {
-
             viewHolder = (ViewHolder) convertView.getTag();
-
         }
         final KitchenDishesDetails kitchenDetails = kitchenDetailsArrayList.get(position);
         viewHolder.mDishName.setText(kitchenDetails.getDishName());

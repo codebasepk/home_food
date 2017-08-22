@@ -51,12 +51,11 @@ public class DishDetailsAdapters extends ArrayAdapter<String> {
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
-          }
-
+        }
         final DishDetails dishDetails = dishDetailsArrayList.get(position);
         viewHolder.mDishName.setText(dishDetails.getDishName());
         viewHolder.mDishPrice.setText(dishDetails.getDishPrice());
-        Picasso.with(AppGlobals.getContext()).load(dishDetails.getDishImage()).into(viewHolder.mDishImage);
+        Picasso.with(AppGlobals.getContext()).load(dishDetails.getDishImage()).placeholder(R.mipmap.dish).into(viewHolder.mDishImage);
         viewHolder.mDishImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

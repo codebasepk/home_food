@@ -66,7 +66,7 @@
     <string name="reset">RESET</string>
     <string name="deliverable">Deliverable :</string>
     <string name="create_account">CREATE ACCOUNT</string>
-    <string name="dish_name">Dish name</string>
+    <string name="dish_name">Dish name: </string>
     <string name="dish_price">Dish price</string>
     <string name="add_dish_details">Dish details</string>
     <string name="name"> Name</string>
