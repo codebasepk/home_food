@@ -86,8 +86,6 @@ public class KitchensListActivity extends AppCompatActivity implements AdapterVi
         mKitchenListView.setOnItemClickListener(this);
         locationMethod();
 
-        System.out.println(mRadiusString + "value");
-
     }
 
     @Override
