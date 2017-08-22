@@ -33,7 +33,7 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/kitchen_image"
-                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_centerVertical="true"
@@ -149,7 +149,7 @@
             <RelativeLayout
                 android:id="@+id/layout_opening_time"
                 android:layout_weight="1.0"
-                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -173,7 +173,6 @@
             <RelativeLayout
                 android:id="@+id/layout_closing_time"
                 android:layout_weight="1.0"
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -253,7 +252,7 @@
 
             <RelativeLayout
                 android:id="@+id/layout_working_days"
-                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:paddingBottom="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_below="@+id/order_finish_layout"

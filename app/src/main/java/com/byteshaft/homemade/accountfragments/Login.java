@@ -218,7 +218,7 @@ public class Login extends Fragment implements View.OnClickListener, HttpRequest
                                     boolean deliveryStatus = jsonObject.getBoolean(AppGlobals.KEY_DELIVERY_STATUS);
                                     String KitchenDetailsId = jsonObject.getString(AppGlobals.KEY_KITCHEN_PROVIDERS_ID);
                                     String location = jsonObject.getString(AppGlobals.KEY_LOCATION);
-                                    String KitchenImage = jsonObject.getString(AppGlobals.KEY_KITCHEN_IMAGE);
+                                    String KitchenImage = jsonObject.getString(AppGlobals.KEY_SERVER_IMAGE);
                                     String timeToFinish = jsonObject.getString(AppGlobals.KEY_TIME_TO_FINISH);
                                     String workingDays = jsonObject.getString(AppGlobals.KEY_WORKING_DAYS);
 

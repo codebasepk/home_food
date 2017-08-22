@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.add_dish) {
-            loadFragment(new AddDishDetails());
+            loadFragmentWithBackStack(new AddDishDetails());
 
         } else if (id == R.id.update_profile) {
             loadFragment(new UpdateProfile());
