@@ -60,7 +60,6 @@
                 android:layout_marginTop="18dp"
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@+id/dish_name_title"
-                android:text="@string/name_delegate"
                 android:textColor="#000"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -85,7 +84,6 @@
             <TextView
                 android:id="@+id/dish_price"
                 android:layout_toRightOf="@+id/dish_price_title"
-                android:text="@string/_50"
                 android:layout_marginTop="2dp"
                 android:textColor="#000"
                 android:layout_width="match_parent"

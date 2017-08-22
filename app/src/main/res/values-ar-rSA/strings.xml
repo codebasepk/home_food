@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">طعام ماماس</string>
 
@@ -153,4 +154,5 @@
     <string name="confirmation_title">التأكيد</string>
     <string name="logout_dialog">هل تريد حقا الخروج؟</string>
     <string name="update_dish">تحديث طبق</string>
+    <string name="turn_on">شغله</string>
 </resources>
