@@ -65,12 +65,12 @@
     <string name="reset">إعادة تعيين</string>
     <string name="deliverable">قابلة للتسليم :</string>
     <string name="create_account">إصنع حساب</string>
-    <string name="dish_name">اسم الطبق</string>
-    <string name="dish_price">سعر الطبق</string>
+    <string name="dish_name">: اسم الطبق</string>
+    <string name="dish_price"> سعر الطبق</string>
     <string name="add_dish_details">تفاصيل الطبق</string>
     <string name="name"> اسم</string>
     <string name="name_delegate">: اسم</string>
-    <string name="_50">: $50</string>
+    <string name="_50">: $50 </string>
     <string name="dish_descriptions">وصف الطبق</string>
     <string name="working_days">أيام العمل :</string>
     <string name="call">مكالمة :</string>

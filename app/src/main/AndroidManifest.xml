@@ -12,7 +12,7 @@
     <application
         android:name=".utils.AppGlobals"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/food_logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -37,9 +37,6 @@
         <activity android:name=".userActivities.KitchenDishesDetailsActivity"/>
         <activity android:name=".userActivities.KitchensListActivity"/>
         <activity android:name=".userActivities.ProductImageView"/>
-
-
-
     </application>
 
 </manifest>
