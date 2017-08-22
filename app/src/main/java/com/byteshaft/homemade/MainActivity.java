@@ -75,8 +75,6 @@ public class MainActivity extends AppCompatActivity
             Helpers.getBitMap(url, kitchenImage);
         }
         loadFragment(new KitchenDishesList());
-        AddDishDetails addDishDetails = new AddDishDetails();
-        addDishDetails.setTargetFragment(addDishDetails, 0);
     }
 
     @Override
